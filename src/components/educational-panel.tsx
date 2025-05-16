@@ -1,46 +1,45 @@
+
 "use client";
 
 import type { FC } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Lightbulb, BarChart3 } from 'lucide-react';
+import { Lightbulb, BarChart3, Leaf, AlertTriangle, TrendingUp } from 'lucide-react'; // Added more icons
+import { useState, useEffect } from 'react';
 
 const factsAndStats = [
   {
     type: "fact",
-    icon: <Lightbulb className="w-5 h-5 mr-2 text-yellow-500" />,
-    title: "Recycling Fact",
-    content: "Recycling one aluminum can saves enough energy to run a TV for 3 hours.",
+    icon: <Lightbulb className="w-6 h-6 mr-2 text-yellow-400" />,
+    title: "Recycling Power 💡",
+    content: "Recycling one aluminum can saves enough energy to run a TV for 3 hours. That's a whole movie!",
   },
   {
     type: "stat",
-    icon: <BarChart3 className="w-5 h-5 mr-2 text-blue-500" />,
-    title: "Waste Statistic",
-    content: "The average person generates over 4 pounds of trash every day.",
+    icon: <BarChart3 className="w-6 h-6 mr-2 text-blue-400" />,
+    title: "Daily Waste Footprint 👣",
+    content: "The average person generates over 4 pounds (nearly 2kg) of trash every single day.",
   },
   {
     type: "fact",
-    icon: <Lightbulb className="w-5 h-5 mr-2 text-yellow-500" />,
-    title: "Plastic Fact",
-    content: "Americans use 2.5 million plastic bottles every hour! Most of them are thrown away.",
+    icon: <AlertTriangle className="w-6 h-6 mr-2 text-orange-400" />,
+    title: "Plastic Bottle Problem 🍼",
+    content: "Globally, humans buy a million plastic bottles per minute! Most are not recycled.",
   },
   {
     type: "stat",
-    icon: <BarChart3 className="w-5 h-5 mr-2 text-blue-500" />,
-    title: "E-waste Stat",
-    content: "Electronic waste (e-waste) is the fastest-growing waste stream in the world.",
+    icon: <TrendingUp className="w-6 h-6 mr-2 text-red-400" />,
+    title: "E-waste Crisis 📱",
+    content: "Electronic waste (e-waste) is the fastest-growing domestic waste stream. Handle with care!",
   },
   {
     type: "fact",
-    icon: <Lightbulb className="w-5 h-5 mr-2 text-yellow-500" />,
-    title: "Composting Fact",
-    content: "Composting organic waste can reduce landfill volume by up to 30%.",
+    icon: <Leaf className="w-6 h-6 mr-2 text-green-400" />,
+    title: "Composting Magic 🌱",
+    content: "Composting organic waste like food scraps can reduce landfill volume by up to 30% and create rich soil.",
   }
 ];
 
-// Simple component to display one random fact/stat
 const EducationalPanel: FC = () => {
-  // Pick a random fact or stat to display.
-  // This will run on client so it's okay. If it were server component, Math.random() would be an issue.
   const [randomIndex, setRandomIndex] = useState(0);
   
   useEffect(() => {
@@ -49,23 +48,22 @@ const EducationalPanel: FC = () => {
 
   const item = factsAndStats[randomIndex];
   
-  if(!item) return null; // Should not happen if factsAndStats is not empty
+  if(!item) return null;
 
   return (
-    <Card className="w-full shadow-lg rounded-xl bg-card">
+    <Card className="w-full shadow-xl rounded-xl bg-card border-primary/20 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-primary/30">
       <CardHeader>
-        <CardTitle className="text-xl font-semibold text-primary flex items-center">
-          {item.icon} {item.title}
-        </CardTitle>
-        <CardDescription>Did you know?</CardDescription>
+        <div className="flex items-center mb-2">
+          {item.icon}
+          <CardTitle className="text-xl font-semibold text-primary ml-1">{item.title}</CardTitle>
+        </div>
+        <CardDescription className="text-sm">Quick Sustainability Insights</CardDescription>
       </CardHeader>
       <CardContent>
-        <p className="text-base text-foreground">{item.content}</p>
+        <p className="text-base text-foreground leading-relaxed">{item.content}</p>
       </CardContent>
     </Card>
   );
 };
 
-// Need to import useState and useEffect
-import { useState, useEffect } from 'react';
 export default EducationalPanel;
