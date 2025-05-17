@@ -95,22 +95,23 @@ body {
     z-index: 0;
   }
   body::before {
-    content: "♻️ 🗑️ 🌍 🌱 💡 💚 💧 🍃 ☀️ 🌲 🌿 🌬️ 🤝 🔄 ✨ ⚙️ 📊 📈 🔬 🛠️ 🧑‍🔬 🧑‍💻 📚 ♻️ 🗑️ 🌍 🌱 💡 💚 💧 🍃 ☀️ 🌲 🌿 🌬️ 🤝 🔄 ✨ ⚙️ 📊 📈 🔬 🛠️ 🧑‍🔬 🧑‍💻 📚 ♻️ 🗑️ 🌍 🌱 💡 💚 💧 🍃 ☀️ 🌲 🌿 🌬️ 🤝 🔄 ✨ ⚙️ 📊 📈 🔬 🛠️ 🧑‍🔬 🧑‍💻 📚 ♻️ 🗑️ 🌍 🌱 💡 💚 💧 🍃 ☀️ 🌲 🌿 🌬️ 🤝 🔄 ✨ ⚙️ 📊 📈 🔬 🛠️ 🧑‍🔬 🧑‍💻 📚 ♻️ 🗑️ 🌍 🌱 💡 💚 💧 🍃 ☀️ 🌲 🌿 🌬️ 🤝 🔄 ✨ ⚙️ 📊 📈 🔬 🛠️ 🧑‍🔬 🧑‍💻 📚 ♻️ 🗑️ 🌍 🌱 💡 💚 💧 🍃 ☀️ 🌲 🌿 🌬️ 🤝 🔄 ✨ ⚙️ 📊 📈 🔬 🛠️ 🧑‍🔬 🧑‍💻 📚 ♻️ 🗑️ 🌍 🌱 💡 💚 💧 🍃 ☀️ 🌲 🌿 🌬️ 🤝 🔄 ✨ ⚙️ 📊 📈 🔬 🛠️ 🧑‍🔬 🧑‍💻 📚 ♻️ 🗑️ 🌍 🌱 💡 💚 💧 🍃 ☀️ 🌲 🌿 🌬️ 🤝 🔄 ✨ ⚙️ 📊 📈 🔬 🛠️ 🧑‍🔬 🧑‍💻 📚 ♻️ 🗑️ 🌍 🌱 💡 💚 💧 🍃 ☀️ 🌲 🌿 🌬️ 🤝 🔄 ✨ ⚙️ 📊 📈 🔬 🛠️ 🧑‍🔬 🧑‍💻 📚 ♻️ 🗑️ 🌍 🌱 💡 💚 💧 🍃 ☀️ 🌲 🌿 🌬️ 🤝 🔄 ✨ ⚙️ 📊 📈 🔬 🛠️ 🧑‍🔬 🧑‍💻 📚 ♻️ 🗑️ 🌍 🌱 💡 💚 💧 🍃 ☀️ 🌲 🌿 🌬️ 🤝 🔄 ✨ ⚙️ 📊 📈 🔬 🛠️ 🧑‍🔬 🧑‍💻 📚 ♻️ 🗑️ 🌍 🌱 💡 💚 💧 🍃 ☀️ 🌲 🌿 🌬️ 🤝 🔄 ✨ ⚙️ 📊 📈 🔬 🛠️ 🧑‍🔬 🧑‍💻 📚 ♻️ 🗑️ 🌍 🌱 💡 💚 💧 🍃 ☀️ 🌲 🌿 🌬️ 🤝 🔄 ✨ ⚙️ 📊 📈 🔬 🛠️ 🧑‍🔬 🧑‍💻 📚 ♻️ 🗑️ 🌍 🌱 💡 💚 💧 🍃 ☀️ 🌲 🌿 🌬️ 🤝 🔄 ✨ ⚙️ 📊 📈 🔬 🛠️ 🧑‍🔬 🧑‍💻 📚 ♻️ 🗑️ 🌍 🌱 💡 💚 💧 🍃 ☀️ 🌲 🌿 🌬️ 🤝 🔄 ✨ ⚙️ 📊 📈 🔬 🛠️ 🧑‍🔬 🧑‍💻 📚";
+    content: "♻️ 🗑️ 🌍 🌱 💡 💚 💧 🍃 ☀️ 🌲 🌿 🌬️ 🤝 🔄 ✨ ⚙️ 📊 📈 🔬 🛠️ 🧑‍🔬 🧑‍💻 📚  "; /* Shorter, more spaced out string */
     position: fixed;
     top: 0;
     left: 0;
-    width: 250vw; 
-    height: 250vh; 
-    font-size: 2.2rem; 
-    line-height: 4.5em; 
-    color: hsla(var(--primary), 0.04); 
+    width: 150vw;  /* Reduced width */
+    height: 150vh; /* Reduced height */
+    font-size: 1.8rem; /* Slightly smaller font size */
+    line-height: 3.5em; /* Adjusted line height */
+    color: hsla(var(--primary), 0.02); /* More transparent color */
     z-index: -1;
     animation: floatEmojisBackground 240s linear infinite;
     pointer-events: none;
     text-align: left; 
-    word-break: break-all;
+    word-break: break-word; /* Changed from break-all to break-word for potentially better perf on shorter lines */
     overflow: hidden; 
-    opacity: 0.65; 
+    opacity: 0.4; /* Reduced opacity */
+    will-change: transform; /* Performance hint for animation */
   }
 
   @keyframes floatEmojisBackground {
@@ -118,16 +119,16 @@ body {
       transform: translate3d(0, 0, 0) rotate(0deg);
     }
     25% {
-      transform: translate3d(-25vw, -20vh, 0) rotate(2deg);
+      transform: translate3d(-15vw, -10vh, 0) rotate(1deg); /* Reduced movement distance */
     }
     50% {
-      transform: translate3d(-50vw, -40vh, 0) rotate(-3deg);
+      transform: translate3d(-30vw, -20vh, 0) rotate(-1deg); /* Reduced movement distance */
     }
     75% {
-      transform: translate3d(-30vw, -60vh, 0) rotate(1deg);
+      transform: translate3d(-20vw, -30vh, 0) rotate(0.5deg); /* Reduced movement distance */
     }
     100% {
-      transform: translate3d(0vw, -80vh, 0) rotate(0deg);
+      transform: translate3d(0vw, -40vh, 0) rotate(0deg); /* Reduced movement distance */
     }
   }
 }
