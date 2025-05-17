@@ -95,23 +95,22 @@ body {
     z-index: 0;
   }
   body::before {
-    content: "♻️ 🗑️ 🌍 🌱 💡 💚 💧 🍃 ☀️ 🌲 🌿 🌬️ 🤝 🔄 ✨ ⚙️ 📊 📈 🔬 🛠️ 🧑‍🔬 🧑‍💻 📚  "; /* Shorter, more spaced out string */
+    content: "♻️ 🗑️ 🌍 🌱 💡 💚 💧 🍃 ☀️ 🌲 🌿 🌬️ 🤝 🔄 ✨ ⚙️ 📊 📈 🔬 🛠️ 🧑‍🔬 🧑‍💻 📚 ♻️ 🗑️ 🌍 🌱 💡 💚 💧 🍃 ☀️ 🌲 🌿 🌬️ 🤝 🔄 ✨ ⚙️ 📊 📈 🔬 🛠️ 🧑‍🔬 🧑‍💻 📚 ♻️ 🗑️ 🌍 🌱 💡 💚 💧 🍃 ☀️ 🌲 🌿 🌬️ 🤝 🔄 ✨ ⚙️ 📊 📈 🔬 🛠️ 🧑‍🔬 🧑‍💻 📚 ♻️ 🗑️ 🌍 🌱 💡 💚 💧 🍃 ☀️ 🌲 🌿 🌬️ 🤝 🔄 ✨ ⚙️ 📊 📈 🔬 🛠️ 🧑‍🔬 🧑‍💻 📚 ♻️ 🗑️ 🌍 🌱 💡 💚 💧 🍃 ☀️ 🌲 🌿 🌬️ 🤝 🔄 ✨ ⚙️ 📊 📈 🔬 🛠️ 🧑‍🔬 🧑‍💻 📚 ♻️ 🗑️ 🌍 🌱 💡 💚 💧 🍃 ☀️ 🌲 🌿 🌬️ 🤝 🔄 ✨ ⚙️ 📊 📈 🔬 🛠️ 🧑‍🔬 🧑‍💻 📚 ♻️ 🗑️ 🌍 🌱 💡 💚 💧 🍃 ☀️ 🌲 🌿 🌬️ 🤝 🔄 ✨ ⚙️ 📊 📈 🔬 🛠️ 🧑‍🔬 🧑‍💻 📚 ♻️ 🗑️ 🌍 🌱 💡 💚 💧 🍃 ☀️ 🌲 🌿 🌬️ 🤝 🔄 ✨ ⚙️ 📊 📈 🔬 🛠️ 🧑‍🔬 🧑‍💻 📚 ♻️ 🗑️ 🌍 🌱 💡 💚 💧 🍃 ☀️ 🌲 🌿 🌬️ 🤝 🔄 ✨ ⚙️ 📊 📈 🔬 🛠️ 🧑‍🔬 🧑‍💻 📚 ♻️ 🗑️ 🌍 🌱 💡 💚 💧 🍃 ☀️ 🌲 🌿 🌬️ 🤝 🔄 ✨ ⚙️ 📊 📈 🔬 🛠️ 🧑‍🔬 🧑‍💻 📚 "; /* Expanded emojis and repetition */
     position: fixed;
     top: 0;
     left: 0;
-    width: 150vw;  /* Reduced width */
-    height: 150vh; /* Reduced height */
-    font-size: 1.8rem; /* Slightly smaller font size */
-    line-height: 3.5em; /* Adjusted line height */
-    color: hsla(var(--primary), 0.02); /* More transparent color */
+    width: 250vw;  /* Increased width for more spread */
+    height: 250vh; /* Increased height for more spread */
+    font-size: 2rem; /* Adjusted font size */
+    line-height: 2.5em; /* Adjusted line height for spacing */
+    color: hsla(var(--primary), 0.05); /* Subtle color */
     z-index: -1;
-    animation: floatEmojisBackground 240s linear infinite;
+    animation: floatEmojisBackground 240s linear infinite; /* Slower, longer animation */
     pointer-events: none;
-    text-align: left; 
-    word-break: break-word; /* Changed from break-all to break-word for potentially better perf on shorter lines */
+    text-align: left; /* Changed to left for more natural drift */
+    word-break: break-all; /* Allows emojis to break lines freely */
     overflow: hidden; 
-    opacity: 0.4; /* Reduced opacity */
-    will-change: transform; /* Performance hint for animation */
+    opacity: 0.7; /* Adjusted opacity for visibility */
   }
 
   @keyframes floatEmojisBackground {
@@ -119,16 +118,16 @@ body {
       transform: translate3d(0, 0, 0) rotate(0deg);
     }
     25% {
-      transform: translate3d(-15vw, -10vh, 0) rotate(1deg); /* Reduced movement distance */
+      transform: translate3d(-40vw, -20vh, 0) rotate(5deg);
     }
     50% {
-      transform: translate3d(-30vw, -20vh, 0) rotate(-1deg); /* Reduced movement distance */
+      transform: translate3d(-80vw, -40vh, 0) rotate(-5deg);
     }
     75% {
-      transform: translate3d(-20vw, -30vh, 0) rotate(0.5deg); /* Reduced movement distance */
+      transform: translate3d(-40vw, -60vh, 0) rotate(3deg);
     }
     100% {
-      transform: translate3d(0vw, -40vh, 0) rotate(0deg); /* Reduced movement distance */
+      transform: translate3d(0vw, -80vh, 0) rotate(0deg); /* Ensures it loops by returning close to a new start point */
     }
   }
 }
