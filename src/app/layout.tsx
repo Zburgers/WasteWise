@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
-import Navbar from '@/components/layout/navbar'; // New Navbar
+import Navbar from '@/components/layout/navbar';
 import Footer from '@/components/layout/footer';
 
 const geistSans = Geist({
@@ -26,9 +26,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>): JSX.Element {
   return (
-    <html lang="en" className="dark"> {/* Apply dark class here for default dark mode */}
+    <html lang="en" className="dark">{/* Apply dark class here for default dark mode */}
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}>
-        <Navbar /> {/* Add Navbar */}
+        <Navbar />
         <main className="flex-grow">
           {children}
         </main>
