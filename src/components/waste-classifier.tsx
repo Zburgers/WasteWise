@@ -12,11 +12,14 @@ import { Loader2, UploadCloud, AlertCircle, CheckCircle2, Info, Recycle } from '
 import { classifyWasteImage, type ClassifyWasteImageOutput } from '@/ai/flows/classify-waste-image';
 import { getDisposalAdvice, type GetDisposalAdviceOutput } from '@/ai/flows/get-disposal-advice';
 import { useToast } from "@/hooks/use-toast";
+import { cn } from '@/lib/utils';
 
 interface WasteClassifierProps {
   selectedRegion: string;
   onClassificationComplete: (wasteType: string) => void; // Callback for when classification is done
 }
+
+const focusGlowStyles = "focus:ring-2 focus:ring-primary focus:ring-opacity-75 focus:shadow-[0_0_10px_hsl(var(--primary))] transition-all duration-200";
 
 const WasteClassifier: FC<WasteClassifierProps> = ({ selectedRegion, onClassificationComplete }) => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -123,7 +126,7 @@ const WasteClassifier: FC<WasteClassifierProps> = ({ selectedRegion, onClassific
 
   return (
     <div className="space-y-6">
-      <Card className="w-full shadow-lg rounded-xl overflow-hidden">
+      <Card className={cn("w-full shadow-lg rounded-xl overflow-hidden bg-card/95 backdrop-blur-sm", focusGlowStyles)}>
         <CardHeader>
           <CardTitle className="text-2xl font-semibold text-primary flex items-center">
             <UploadCloud className="w-7 h-7 mr-2" /> Waste Image Classifier
@@ -133,7 +136,7 @@ const WasteClassifier: FC<WasteClassifierProps> = ({ selectedRegion, onClassific
         <CardContent className="space-y-6 p-6">
           <div className="space-y-2">
             <Label htmlFor="waste-image-upload" className="text-base">Upload Image</Label>
-            <Input id="waste-image-upload" type="file" accept="image/*" onChange={handleImageChange} className="file:text-primary file:font-semibold hover:file:bg-primary/10" />
+            <Input id="waste-image-upload" type="file" accept="image/*" onChange={handleImageChange} className={cn("file:text-primary file:font-semibold hover:file:bg-primary/10", focusGlowStyles)} />
           </div>
 
           {imagePreview && (
@@ -152,7 +155,7 @@ const WasteClassifier: FC<WasteClassifierProps> = ({ selectedRegion, onClassific
           )}
         </CardContent>
         <CardFooter className="p-6">
-          <Button onClick={handleClassifySubmit} disabled={isLoadingClassification || !imagePreview} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
+          <Button onClick={handleClassifySubmit} disabled={isLoadingClassification || !imagePreview} className={cn("w-full bg-primary hover:bg-primary/90 text-primary-foreground", focusGlowStyles)}>
             {isLoadingClassification ? (
               <>
                 <Loader2 className="mr-2 h-5 w-5 animate-spin" /> Analyzing Waste...
@@ -165,7 +168,7 @@ const WasteClassifier: FC<WasteClassifierProps> = ({ selectedRegion, onClassific
       </Card>
 
       {classificationResult && !isLoadingClassification && (
-        <Card className="mt-6 bg-secondary/30 border-primary/50 shadow-md rounded-xl">
+        <Card className={cn("mt-6 bg-secondary/30 border-primary/50 shadow-md rounded-xl bg-card/95 backdrop-blur-sm", focusGlowStyles)}>
           <CardHeader>
             <CardTitle className="flex items-center text-primary">
               <CheckCircle2 className="w-6 h-6 mr-2" /> Classification Result
@@ -179,7 +182,7 @@ const WasteClassifier: FC<WasteClassifierProps> = ({ selectedRegion, onClassific
             <Button 
               onClick={handleGetDisposalAdvice} 
               disabled={isFetchingAdvice} 
-              className="w-full bg-green-600 hover:bg-green-700 text-white"
+              className={cn("w-full bg-green-600 hover:bg-green-700 text-white", focusGlowStyles)}
             >
               {isFetchingAdvice ? (
                 <>
@@ -196,14 +199,14 @@ const WasteClassifier: FC<WasteClassifierProps> = ({ selectedRegion, onClassific
       )}
 
       {isFetchingAdvice && (
-          <div className="mt-4 flex flex-col justify-center items-center space-y-2 p-6 border rounded-lg shadow-sm">
+          <div className="mt-4 flex flex-col justify-center items-center space-y-2 p-6 border rounded-lg shadow-sm bg-card/95 backdrop-blur-sm">
               <Loader2 className="h-8 w-8 animate-spin text-primary" />
               <p className="text-muted-foreground">Fetching disposal advice for {classificationResult?.wasteType}...</p>
           </div>
       )}
 
       {adviceError && !isFetchingAdvice && (
-        <Alert variant="destructive" className="mt-4">
+        <Alert variant="destructive" className="mt-4 bg-card/95 backdrop-blur-sm">
           <AlertCircle className="h-4 w-4" />
           <AlertTitle>Advice Error</AlertTitle>
           <AlertDescription>{adviceError}</AlertDescription>
@@ -211,13 +214,13 @@ const WasteClassifier: FC<WasteClassifierProps> = ({ selectedRegion, onClassific
       )}
 
       {disposalAdvice && !isFetchingAdvice && (
-        <Card className="mt-6 border-green-500/50 shadow-lg rounded-xl">
-          <CardHeader className="bg-green-50 dark:bg-green-900/20 rounded-t-xl">
+        <Card className={cn("mt-6 border-green-500/50 shadow-lg rounded-xl bg-card/95 backdrop-blur-sm", focusGlowStyles)}>
+          <CardHeader className="bg-green-50 dark:bg-green-900/30 rounded-t-xl">
             <CardTitle className="flex items-center text-green-700 dark:text-green-300">
               <Recycle className="w-7 h-7 mr-2" /> Disposal Advice: {disposalAdvice.itemName}
             </CardTitle>
             {disposalAdvice.regionalConsiderations && (
-              <CardDescription className="pt-1 text-sm">
+              <CardDescription className="pt-1 text-sm text-green-600 dark:text-green-400/90">
                 <strong>Regional Notes ({selectedRegion}):</strong> {disposalAdvice.regionalConsiderations}
               </CardDescription>
             )}
@@ -226,7 +229,7 @@ const WasteClassifier: FC<WasteClassifierProps> = ({ selectedRegion, onClassific
             <div>
               <h4 className="font-semibold text-lg text-primary mb-2">Disposal Options:</h4>
               {disposalAdvice.disposalOptions.map((option, index) => (
-                <div key={index} className="mb-4 p-4 border rounded-md bg-background shadow-sm">
+                <div key={index} className="mb-4 p-4 border rounded-md bg-background/70 shadow-sm backdrop-blur-xs">
                   <p className="font-medium text-md text-primary-darker flex items-center">
                     <Info className="w-5 h-5 mr-2 text-accent" /> {option.method}
                   </p>

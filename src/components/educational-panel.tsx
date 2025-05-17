@@ -5,6 +5,7 @@ import type { FC } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Lightbulb, BarChart3, Leaf, AlertTriangle, TrendingUp } from 'lucide-react'; // Added more icons
 import { useState, useEffect } from 'react';
+import { cn } from '@/lib/utils';
 
 const factsAndStats = [
   {
@@ -39,6 +40,9 @@ const factsAndStats = [
   }
 ];
 
+const focusGlowStyles = "focus-within:ring-2 focus-within:ring-primary focus-within:ring-opacity-75 focus-within:shadow-[0_0_10px_hsl(var(--primary))] transition-all duration-200";
+
+
 const EducationalPanel: FC = () => {
   const [randomIndex, setRandomIndex] = useState(0);
   
@@ -51,7 +55,10 @@ const EducationalPanel: FC = () => {
   if(!item) return null;
 
   return (
-    <Card className="w-full shadow-xl rounded-xl bg-card border-primary/20 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-primary/30">
+    <Card className={cn(
+        "w-full shadow-xl rounded-xl bg-card/95 backdrop-blur-sm border-primary/20 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-primary/30",
+        focusGlowStyles // Applying to card if it can gain focus, e.g. if it has focusable elements or is made focusable
+    )}>
       <CardHeader>
         <div className="flex items-center mb-2">
           {item.icon}
