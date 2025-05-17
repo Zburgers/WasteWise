@@ -29,7 +29,7 @@ export default function LandingPage() {
               WasteWise uses cutting-edge AI to revolutionize how we manage waste. From your home to entire cities, we're making sustainability accessible and actionable. 🌍
             </p>
             <Link href="/dashboard">
-              <Button size="lg" className="group bg-accent hover:bg-accent/90 text-accent-foreground transition-transform duration-300 hover:scale-105 shadow-lg">
+              <Button size="lg" className="group bg-accent hover:bg-accent/90 text-accent-foreground transition-transform duration-300 hover:scale-105 shadow-lg hover:shadow-[0_0_20px_0px_hsl(var(--accent))]">
                 Explore the App <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
@@ -128,7 +128,7 @@ export default function LandingPage() {
             Join the WasteWise community and take the first step towards smarter waste management. It's easy, informative, and impactful.
           </p>
           <Link href="/dashboard">
-            <Button size="lg" className="mt-8 group bg-primary hover:bg-primary/90 text-primary-foreground transition-transform duration-300 hover:scale-105 shadow-lg">
+            <Button size="lg" className="mt-8 group bg-primary hover:bg-primary/90 text-primary-foreground transition-transform duration-300 hover:scale-105 shadow-lg hover:shadow-[0_0_20px_0px_hsl(var(--primary))]">
               Start Sorting Smarter <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>
@@ -146,7 +146,7 @@ interface FeatureCardProps {
 
 function FeatureCard({ icon, title, description }: FeatureCardProps) {
   return (
-    <Card className="bg-card shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
+    <Card className="bg-card shadow-xl hover:shadow-[0_0_20px_0px_hsl(var(--accent)/0.8)] transition-all duration-300 transform hover:-translate-y-1">
       <CardHeader className="flex flex-row items-center gap-4 pb-2">
         {icon}
         <CardTitle className="text-xl text-accent">{title}</CardTitle>
@@ -165,10 +165,11 @@ interface SolutionCardProps {
 }
 function SolutionCard({ title, description, icon }: SolutionCardProps) {
   return (
-    <div className="flex flex-col items-start p-6 bg-card rounded-lg shadow-lg transition-all duration-300 hover:shadow-primary/20 hover:border-primary border border-transparent">
+    <div className="flex flex-col items-start p-6 bg-card rounded-lg shadow-lg transition-all duration-300 hover:shadow-[0_0_20px_0px_hsl(var(--primary)/0.7)] hover:border-primary border border-transparent transform hover:-translate-y-1">
       {icon}
       <h3 className="text-2xl font-semibold text-primary mb-2">{title}</h3>
       <p className="text-muted-foreground leading-relaxed">{description}</p>
     </div>
   );
 }
+
