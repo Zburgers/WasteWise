@@ -2,32 +2,32 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-// Header is removed, Navbar will handle global navigation
 import RegionSelector from "@/components/region-selector";
 import WasteClassifier from "@/components/waste-classifier";
-// AiChatbot is replaced by AiChatBubble
-import AiChatBubble from "@/components/ai-chat-bubble"; // New chat bubble
+import AiChatBubble from "@/components/ai-chat-bubble"; 
 import EducationalPanel from "@/components/educational-panel";
 import { REGIONS } from "@/lib/types";
 import { Separator } from '@/components/ui/separator';
 
-export default function DashboardPage() { // Renamed from HomePage
+export default function DashboardPage() {
   const [selectedRegion, setSelectedRegion] = useState<string>(REGIONS.find(r => r.value === "global")?.label || "Global (Default)");
+  const [lastClassifiedItem, setLastClassifiedItem] = useState<string | null>(null);
 
   const handleRegionChange = (regionValue: string) => {
     const region = REGIONS.find(r => r.value === regionValue);
     setSelectedRegion(region ? region.label : "Global (Default)");
   };
   
-  // Get the value for the RegionSelector component
   const currentRegionValue = REGIONS.find(r => r.label === selectedRegion)?.value || "global";
 
+  const handleClassificationComplete = (wasteType: string) => {
+    setLastClassifiedItem(wasteType);
+  };
+
   return (
-    // Removed Header component call
-    // Removed flex flex-col min-h-screen bg-background as RootLayout handles this
-    <div className="container mx-auto px-4 py-8"> {/* Adjusted padding, main layout in RootLayout */}
-      <div className="w-full max-w-5xl mx-auto space-y-10">
-        <section aria-labelledby="region-selection-heading" className="mt-8"> {/* Added margin top */}
+    <div className="container mx-auto px-4 py-8">
+      <div className="w-full max-w-6xl mx-auto space-y-10"> {/* Increased max-width for better layout */}
+        <section aria-labelledby="region-selection-heading" className="mt-8">
           <h2 id="region-selection-heading" className="text-3xl font-semibold text-center mb-6 text-primary">
             WasteWise Dashboard
           </h2>
@@ -39,20 +39,22 @@ export default function DashboardPage() { // Renamed from HomePage
 
         <Separator />
 
-        <div className="grid md:grid-cols-2 gap-10 items-start">
-          <section aria-labelledby="waste-classifier-heading" className="space-y-6">
+        {/* Updated grid layout */}
+        <div className="grid lg:grid-cols-3 gap-10 items-start">
+          <section aria-labelledby="waste-classifier-heading" className="space-y-6 lg:col-span-2"> {/* Classifier takes 2/3 width on lg screens */}
              <h2 id="waste-classifier-heading" className="sr-only">Waste Classifier</h2>
-            <WasteClassifier selectedRegion={selectedRegion} />
+            <WasteClassifier 
+              selectedRegion={selectedRegion} 
+              onClassificationComplete={handleClassificationComplete} 
+            />
           </section>
-          <section aria-labelledby="educational-info-heading" className="space-y-6 md:mt-0">
+          <section aria-labelledby="educational-info-heading" className="space-y-6 lg:col-span-1"> {/* Educational panel takes 1/3 width on lg screens */}
             <h2 id="educational-info-heading" className="sr-only">Educational Information</h2>
             <EducationalPanel />
-            {/* The AiChatbot used to be here, now it's a floating bubble */}
           </section>
         </div>
       </div>
-      <AiChatBubble selectedRegion={selectedRegion} /> {/* Add the chat bubble */}
+      <AiChatBubble selectedRegion={selectedRegion} lastClassifiedItem={lastClassifiedItem} />
     </div>
-    // Removed Footer component call, RootLayout handles this
   );
 }

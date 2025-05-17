@@ -15,9 +15,10 @@ import { useToast } from "@/hooks/use-toast";
 
 interface WasteClassifierProps {
   selectedRegion: string;
+  onClassificationComplete: (wasteType: string) => void; // Callback for when classification is done
 }
 
-const WasteClassifier: FC<WasteClassifierProps> = ({ selectedRegion }) => {
+const WasteClassifier: FC<WasteClassifierProps> = ({ selectedRegion, onClassificationComplete }) => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [photoDataUri, setPhotoDataUri] = useState<string | null>(null);
   const [classificationResult, setClassificationResult] = useState<ClassifyWasteImageOutput | null>(null);
@@ -71,12 +72,13 @@ const WasteClassifier: FC<WasteClassifierProps> = ({ selectedRegion }) => {
     setIsLoadingClassification(true);
     setClassificationError(null);
     setClassificationResult(null);
-    setDisposalAdvice(null); // Clear previous advice
+    setDisposalAdvice(null); 
     setAdviceError(null);
 
     try {
       const result = await classifyWasteImage({ photoDataUri });
       setClassificationResult(result);
+      onClassificationComplete(result.wasteType); // Notify parent component
       toast({
         title: "Classification Successful",
         description: `Identified as: ${result.wasteType}`,
