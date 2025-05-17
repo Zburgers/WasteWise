@@ -1,3 +1,4 @@
+
 // This is the new Landing Page
 "use client";
 
@@ -65,7 +66,7 @@ export default function LandingPage() {
       </section>
       
       {/* Vision Section */}
-      <section className="w-full py-16 md:py-24 bg-secondary/30">
+      <section className="w-full py-16 md:py-24 bg-card"> {/* Changed background here for readability */}
         <div className="container mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-12 items-center">
           <div>
             <Image 
