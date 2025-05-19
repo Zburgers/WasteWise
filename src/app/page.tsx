@@ -4,9 +4,11 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Brain, Lightbulb, Recycle, Zap, Users, BookOpen } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import ChallengesSection from '@/components/challenges-section';
 
 export default function LandingPage() {
   return (
@@ -23,11 +25,11 @@ export default function LandingPage() {
             <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm text-secondary-foreground shadow-md">
               WasteWise ✨ AI-Powered Sustainability
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">
-              Sort Smarter, Live Greener.
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-center max-w-4xl">
+              Ever stared at trash, wondering where it <em className="italic">actually</em> goes?
             </h1>
-            <p className="max-w-[700px] text-muted-foreground md:text-xl">
-              WasteWise uses cutting-edge AI to revolutionize how we manage waste. From your home to entire cities, we're making sustainability accessible and actionable. 🌍
+            <p className="max-w-[700px] text-muted-foreground md:text-xl mt-4">
+              WasteWise gets it. We&apos;re here to turn that trash-confusion into trash-confidence with a little help from AI. Let&apos;s make sorting smarter and living greener the new vibe. 🌍
             </p>
             <Link href="/dashboard">
               <Button size="lg" className="group bg-accent hover:bg-accent/90 text-accent-foreground transition-transform duration-300 hover:scale-105 shadow-lg hover:shadow-[0_0_20px_0px_hsl(var(--accent))]">
@@ -63,6 +65,17 @@ export default function LandingPage() {
             />
           </div>
         </div>
+      </section>
+
+      {/* Actionable Data Section */}
+ <section className="w-full py-16 md:py-24 bg-card">
+ <div className="container mx-auto px-4 md:px-6">
+ <div className="text-center mb-12">
+ <h2 className="text-3xl md:text-4xl font-bold text-primary">Get Real-World Actionable Data</h2>
+ <p className="text-muted-foreground mt-2">Explore features that provide actionable insights for smarter waste management.</p>
+ </div>
+ {/* Content related to actionable data features can be added here */}
+ </div>
       </section>
       
       {/* Vision Section */}
@@ -119,6 +132,11 @@ export default function LandingPage() {
             />
           </div>
         </div>
+      </section>
+
+      {/* Challenges Section */}
+      <section className="w-full py-16 md:py-24 bg-background">
+ <ChallengesSection />
       </section>
 
       {/* CTA Section */}

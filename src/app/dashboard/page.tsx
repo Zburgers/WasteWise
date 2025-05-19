@@ -6,7 +6,7 @@ import RegionSelector from "@/components/region-selector";
 import WasteClassifier from "@/components/waste-classifier";
 import AiChatBubble from "@/components/ai-chat-bubble"; 
 import EducationalPanel from "@/components/educational-panel";
-import RecentClassificationsPanel from "@/components/recent-classifications-panel"; // New
+import RecentClassificationsPanel from "@/components/recent-classifications-panel";
 import { REGIONS } from "@/lib/types";
 import { Separator } from '@/components/ui/separator';
 

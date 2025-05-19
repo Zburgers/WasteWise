@@ -130,7 +130,7 @@ export default function ChallengesPage() {
       <Tabs defaultValue="available" className="w-full" onValueChange={setActiveTab}>
         <TabsList className="grid w-full grid-cols-1 md:grid-cols-3 mb-6 bg-card shadow-md p-1 rounded-lg">
           {['available', 'active', 'completed'].map(tabValue => (
-            <TabsTrigger 
+            <TabsTrigger
               key={tabValue} 
               value={tabValue} 
               className="py-3 text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg rounded-md transition-all duration-200 ease-in-out flex items-center justify-center"
