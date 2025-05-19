@@ -1,3 +1,4 @@
+
 export interface ClassificationOutput {
   wasteType: string;
   confidence: number;
@@ -23,3 +24,23 @@ export const REGIONS = [
   { value: "oceania", label: "Oceania" },
   { value: "global", label: "Global (Default)" },
 ];
+
+// New types for Challenges feature
+export interface Challenge {
+  id: string;
+  title: string;
+  description: string;
+  icon: React.ElementType; // Lucide icon component
+  category: string; // e.g., 'plastic', 'food_waste', 'general'
+  goal: number; // e.g., 7 (days), 10 (items)
+  unit: string; // e.g., 'days', 'items avoided', 'actions'
+  durationDays?: number; // Optional: for time-based challenges
+}
+
+export interface UserChallenge extends Challenge {
+  userId: string; // Or some user identifier
+  status: 'available' | 'active' | 'completed';
+  currentProgress: number;
+  startDate?: Date;
+  completedDate?: Date;
+}

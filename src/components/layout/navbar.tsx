@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { Recycle, Menu, X, Home, LayoutDashboard, Sparkles } from 'lucide-react';
+import { Recycle, Menu, X, Home, LayoutDashboard, Sparkles, Users } from 'lucide-react'; // Added Users icon
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
@@ -11,6 +11,7 @@ import { cn } from '@/lib/utils';
 const navItems = [
   { href: '/', label: 'Home', icon: <Home className="w-5 h-5" /> },
   { href: '/dashboard', label: 'Dashboard', icon: <LayoutDashboard className="w-5 h-5" /> },
+  { href: '/challenges', label: 'Challenges', icon: <Users className="w-5 h-5" /> }, // New Challenges link
   // Add more nav items here if needed
 ];
 
