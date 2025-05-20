@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from 'next/link';
@@ -7,6 +6,7 @@ import { Recycle, Menu, X, Home, LayoutDashboard, Sparkles, Users } from 'lucide
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 const navItems = [
   { href: '/', label: 'Home', icon: <Home className="w-5 h-5" /> },
@@ -22,8 +22,14 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2 transition-transform hover:scale-105">
-          <Recycle className="h-8 w-8 text-primary" />
-          <span className="text-2xl font-bold text-primary">WasteWise</span>
+          <Image 
+            src="/static/WasteWiselogo1.png" 
+            alt="WasteWise Logo" 
+            width={56} 
+            height={56} 
+            className="h-14 w-auto object-contain" 
+            priority
+          />
         </Link>
 
         {/* Desktop Navigation */}
@@ -56,8 +62,14 @@ export default function Navbar() {
             <SheetContent side="right" className="w-[280px] bg-background p-6">
               <div className="mb-8 flex justify-between items-center">
                 <Link href="/" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Recycle className="h-7 w-7 text-primary" />
-                  <span className="text-xl font-bold text-primary">WasteWise</span>
+                  <Image 
+                    src="/static/WasteWiselogo1.png" 
+                    alt="WasteWise Logo" 
+                    width={44} 
+                    height={44} 
+                    className="h-11 w-auto object-contain" 
+                    priority
+                  />
                 </Link>
                 <SheetClose asChild>
                    <Button variant="ghost" size="icon">

@@ -1,4 +1,3 @@
-
 // This is the new Landing Page
 "use client";
 
@@ -21,21 +20,33 @@ export default function LandingPage() {
           <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-primary rounded-full filter blur-3xl animate-pulse animation-delay-2000"></div>
         </div>
         <div className="container mx-auto px-4 md:px-6 z-10">
-          <div className="flex flex-col items-center space-y-6">
-            <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm text-secondary-foreground shadow-md">
-              WasteWise ✨ AI-Powered Sustainability
+          <div className="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-8">
+            <div className="flex-1 flex flex-col items-center md:items-start">
+              <div className="inline-block rounded-lg bg-secondary px-3 py-1 text-sm text-secondary-foreground shadow-md">
+                WasteWise ✨ AI-Powered Sustainability
+              </div>
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-center md:text-left max-w-4xl">
+                Ever stared at trash, wondering where it <em className="italic">actually</em> goes?
+              </h1>
+              <p className="max-w-[700px] text-muted-foreground md:text-xl mt-4 text-center md:text-left">
+                WasteWise gets it. We&apos;re here to turn that trash-confusion into trash-confidence with a little help from AI. Let&apos;s make sorting smarter and living greener the new vibe. 🌍
+              </p>
+              <Link href="/dashboard">
+                <Button size="lg" className="group bg-accent hover:bg-accent/90 text-accent-foreground transition-transform duration-300 hover:scale-105 shadow-lg hover:shadow-[0_0_20px_0px_hsl(var(--accent))] mt-6">
+                  Explore the App <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-center max-w-4xl">
-              Ever stared at trash, wondering where it <em className="italic">actually</em> goes?
-            </h1>
-            <p className="max-w-[700px] text-muted-foreground md:text-xl mt-4">
-              WasteWise gets it. We&apos;re here to turn that trash-confusion into trash-confidence with a little help from AI. Let&apos;s make sorting smarter and living greener the new vibe. 🌍
-            </p>
-            <Link href="/dashboard">
-              <Button size="lg" className="group bg-accent hover:bg-accent/90 text-accent-foreground transition-transform duration-300 hover:scale-105 shadow-lg hover:shadow-[0_0_20px_0px_hsl(var(--accent))]">
-                Explore the App <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
+            <div className="flex-1 flex justify-center md:justify-end">
+              <Image 
+                src="/static/WasteWiseLogo2.png" 
+                alt="WasteWise Hero Logo" 
+                width={320} 
+                height={320} 
+                className="w-64 h-64 md:w-80 md:h-80 object-contain drop-shadow-xl" 
+                priority
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -83,7 +94,7 @@ export default function LandingPage() {
         <div className="container mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-12 items-center">
           <div>
             <Image 
-              src="https://placehold.co/600x400.png" 
+              src="/static/vision.png" 
               alt="Vision of a greener planet" 
               width={600} 
               height={400} 

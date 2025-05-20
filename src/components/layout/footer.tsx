@@ -9,13 +9,13 @@ const Footer: FC = () => {
           &copy; {new Date().getFullYear()} WasteWise. AI for a cleaner tomorrow.
         </p>
         <div className="flex space-x-4">
-          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="WasteWise on Twitter" className="text-muted-foreground hover:text-primary transition-colors">
+          <a href="https://x.com/_nx8i_" target="_blank" rel="noopener noreferrer" aria-label="WasteWise on Twitter" className="text-muted-foreground hover:text-primary transition-colors">
             <Twitter className="w-5 h-5" />
           </a>
-          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="WasteWise on Github" className="text-muted-foreground hover:text-primary transition-colors">
+          <a href="https://github.com/Zburgers/" target="_blank" rel="noopener noreferrer" aria-label="WasteWise on Github" className="text-muted-foreground hover:text-primary transition-colors">
             <Github className="w-5 h-5" />
           </a>
-          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="WasteWise on LinkedIn" className="text-muted-foreground hover:text-primary transition-colors">
+          <a href="https://www.linkedin.com/in/nakshatra-kundlas-7a33a9170/" target="_blank" rel="noopener noreferrer" aria-label="WasteWise on LinkedIn" className="text-muted-foreground hover:text-primary transition-colors">
             <Linkedin className="w-5 h-5" />
           </a>
         </div>

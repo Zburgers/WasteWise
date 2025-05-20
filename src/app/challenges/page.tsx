@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, type FC, useEffect } from 'react';
@@ -133,7 +132,7 @@ export default function ChallengesPage() {
             <TabsTrigger
               key={tabValue} 
               value={tabValue} 
-              className="py-3 text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg rounded-md transition-all duration-200 ease-in-out flex items-center justify-center"
+              className="h-12 text-base px-6 py-3 rounded-md flex items-center justify-center font-semibold transition-all duration-200 ease-in-out data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:scale-100 scale-100"
             >
              {getIconForTab(tabValue)} {tabValue.charAt(0).toUpperCase() + tabValue.slice(1)} Challenges
             </TabsTrigger>
