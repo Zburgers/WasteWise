@@ -4,6 +4,9 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from '@/components/layout/navbar';
 import Footer from '@/components/layout/footer';
+import ClientLayout from '@/components/layout/ClientLayout';
+import { AuthModalProvider } from '@/hooks/useAuthModal';
+import { WalletProvider } from '../context/WalletContext';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -26,14 +29,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>): JSX.Element {
   return (
-    <html lang="en" className="dark">{/* Apply dark class here for default dark mode */}
+    <html lang="en" className="dark">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}>
+        <AuthModalProvider>
+          <WalletProvider>
         <Navbar />
         <main className="flex-grow">
+              <ClientLayout>
           {children}
+              </ClientLayout>
         </main>
         <Footer />
         <Toaster />
+          </WalletProvider>
+        </AuthModalProvider>
       </body>
     </html>
   );

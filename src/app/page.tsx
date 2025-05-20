@@ -79,18 +79,62 @@ export default function LandingPage() {
       </section>
 
       {/* Actionable Data Section */}
- <section className="w-full py-16 md:py-24 bg-card">
- <div className="container mx-auto px-4 md:px-6">
- <div className="text-center mb-12">
- <h2 className="text-3xl md:text-4xl font-bold text-primary">Get Real-World Actionable Data</h2>
- <p className="text-muted-foreground mt-2">Explore features that provide actionable insights for smarter waste management.</p>
- </div>
- {/* Content related to actionable data features can be added here */}
- </div>
+      <section className="w-full py-16 md:py-24 bg-gradient-to-br from-background to-background/90">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary">Get Real-World Actionable Data</h2>
+            <p className="text-muted-foreground mt-2">Explore features that provide actionable insights for smarter waste management.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-card rounded-xl p-6 shadow-lg">
+              <h3 className="text-xl font-bold text-accent mb-3">Personal Impact Dashboard</h3>
+              <p className="text-muted-foreground mb-4">Track your waste reduction journey with personalized metrics showing your environmental impact over time.</p>
+              <ul className="space-y-2">
+                <li className="flex items-center">
+                  <div className="h-2 w-2 rounded-full bg-green-500 mr-2"></div>
+                  <span>CO₂ emissions prevented</span>
+                </li>
+                <li className="flex items-center">
+                  <div className="h-2 w-2 rounded-full bg-blue-500 mr-2"></div>
+                  <span>Water saved through proper disposal</span>
+                </li>
+                <li className="flex items-center">
+                  <div className="h-2 w-2 rounded-full bg-amber-500 mr-2"></div>
+                  <span>Landfill space conserved</span>
+                </li>
+              </ul>
+            </div>
+            <div className="bg-card rounded-xl p-6 shadow-lg">
+              <h3 className="text-xl font-bold text-accent mb-3">Community Progress Maps</h3>
+              <p className="text-muted-foreground mb-4">Visualize how your community is performing and identify areas for improvement.</p>
+              <ul className="space-y-2">
+                <li className="flex items-center">
+                  <div className="h-2 w-2 rounded-full bg-purple-500 mr-2"></div>
+                  <span>Local recycling hotspots</span>
+                </li>
+                <li className="flex items-center">
+                  <div className="h-2 w-2 rounded-full bg-red-500 mr-2"></div>
+                  <span>Contamination reduction rates</span>
+                </li>
+                <li className="flex items-center">
+                  <div className="h-2 w-2 rounded-full bg-teal-500 mr-2"></div>
+                  <span>Community waste diversion goals</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="mt-10 text-center">
+            <Link href="/dashboard">
+              <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                Explore Your Data Dashboard
+              </Button>
+            </Link>
+          </div>
+        </div>
       </section>
       
       {/* Vision Section */}
-      <section className="w-full py-16 md:py-24 bg-gradient-to-br from-background/10 via-card/60 to-card">
+      <section className="w-full py-16 md:py-24 bg-gradient-to-br from-background via-background/95 to-card/40">
         <div className="container mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-12 items-center">
           <div>
             <Image 
@@ -115,7 +159,7 @@ export default function LandingPage() {
       </section>
 
       {/* How It Solves Problems Section */}
-      <section className="w-full py-16 md:py-24 bg-background">
+      <section className="w-full py-16 md:py-24 bg-card/20">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-primary">Solving Real-World Challenges 🛠️</h2>
@@ -146,12 +190,88 @@ export default function LandingPage() {
       </section>
 
       {/* Challenges Section */}
-      <section className="w-full py-16 md:py-24 bg-background">
- <ChallengesSection />
+      <section className="w-full py-16 md:py-24 bg-card/20">
+        <ChallengesSection />
+      </section>
+
+      {/* Impact Statistics Section */}
+      <section className="w-full py-16 md:py-20 bg-gradient-to-br from-card/20 to-card/40">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary">Our Impact So Far</h2>
+            <p className="text-muted-foreground mt-2">Together, we're making measurable changes for our planet.</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <StatCard value="52,340" label="Waste Items Classified" />
+            <StatCard value="18,750" label="kg CO₂ Prevented" />
+            <StatCard value="6,240" label="Active Users" />
+            <StatCard value="83%" label="Accurate Sorting Rate" />
+          </div>
+          <div className="mt-12 text-center">
+            <p className="text-muted-foreground">These numbers grow every day as our community expands!</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="w-full py-16 md:py-24 bg-card/60">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary">What Our Users Say</h2>
+            <p className="text-muted-foreground mt-2">Real stories from people making a difference with WasteWise.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            <TestimonialCard 
+              quote="WasteWise has completely transformed how my family approaches recycling. The AI classification feature is incredibly accurate!" 
+              author="Sarah K." 
+              role="Community Leader"
+            />
+            <TestimonialCard 
+              quote="As a teacher, I use WasteWise to educate my students about sustainability. The gamification makes learning fun and effective." 
+              author="Michael T." 
+              role="Environmental Educator"
+            />
+            <TestimonialCard 
+              quote="I never realized how much of my waste could be recycled until I started using this app. The regional disposal information is a game-changer." 
+              author="Aisha M." 
+              role="Zero-Waste Enthusiast"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter Signup */}
+      <section className="w-full py-16 md:py-20 bg-gradient-to-br from-card/60 to-primary/20">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="max-w-3xl mx-auto bg-background/80 backdrop-blur-sm rounded-xl shadow-xl p-8 relative overflow-hidden">
+            <div className="absolute -right-24 -top-24 w-48 h-48 bg-accent/20 rounded-full blur-3xl"></div>
+            <div className="absolute -left-24 -bottom-24 w-48 h-48 bg-primary/20 rounded-full blur-3xl"></div>
+            <div className="relative z-10">
+              <h2 className="text-2xl md:text-3xl font-bold text-center text-primary">Stay Updated on Sustainable Living</h2>
+              <p className="text-center text-muted-foreground mt-3 mb-6">
+                Subscribe to our newsletter for the latest tips, challenges, and features.
+              </p>
+              <form className="flex flex-col sm:flex-row gap-3 w-full max-w-lg mx-auto">
+                <input 
+                  type="email" 
+                  placeholder="Enter your email" 
+                  className="flex-1 min-w-0 px-4 py-2 rounded-md bg-background border border-input text-foreground focus:outline-none focus:ring-2 focus:ring-accent"
+                  required
+                />
+                <Button type="submit" size="default" className="bg-accent hover:bg-accent/90 text-accent-foreground">
+                  Subscribe
+                </Button>
+              </form>
+              <p className="text-xs text-muted-foreground text-center mt-4">
+                We respect your privacy. Unsubscribe at any time.
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* CTA Section */}
-      <section className="w-full py-20 md:py-32 bg-gradient-to-tr from-accent/30 via-background to-background text-center">
+      <section className="w-full py-20 md:py-32 bg-gradient-to-tr from-primary/20 via-background/90 to-background text-center">
         <div className="container mx-auto px-4 md:px-6">
           <h2 className="text-3xl md:text-5xl font-bold">Ready to Make a Difference?</h2>
           <p className="max-w-[600px] mx-auto mt-4 text-muted-foreground md:text-xl">
@@ -199,6 +319,44 @@ function SolutionCard({ title, description, icon }: SolutionCardProps) {
       {icon}
       <h3 className="text-2xl font-semibold text-primary mb-2">{title}</h3>
       <p className="text-muted-foreground leading-relaxed">{description}</p>
+    </div>
+  );
+}
+
+interface TestimonialCardProps {
+  quote: string;
+  author: string;
+  role: string;
+}
+
+function TestimonialCard({ quote, author, role }: TestimonialCardProps) {
+  return (
+    <div className="bg-background p-6 rounded-lg shadow-lg border border-border hover:border-primary transition-all duration-300">
+      <div className="mb-4 text-accent">"</div>
+      <p className="text-muted-foreground italic mb-4">{quote}</p>
+      <div className="flex items-center">
+        <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
+          {author.charAt(0)}
+        </div>
+        <div className="ml-3">
+          <div className="font-semibold">{author}</div>
+          <div className="text-sm text-muted-foreground">{role}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+interface StatCardProps {
+  value: string;
+  label: string;
+}
+
+function StatCard({ value, label }: StatCardProps) {
+  return (
+    <div className="p-6 bg-background rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border border-border">
+      <div className="text-3xl md:text-4xl font-bold text-primary mb-2">{value}</div>
+      <div className="text-sm text-muted-foreground">{label}</div>
     </div>
   );
 }

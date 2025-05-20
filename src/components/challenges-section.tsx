@@ -1,52 +1,107 @@
 import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Award, Calendar, Users } from 'lucide-react';
 
 const ChallengesSection: React.FC = () => {
   return (
-    <section id="challenges" className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-100">
-      <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-          Ready to level up your eco-game?
-        </h2>
-        <p className="mt-4 text-lg text-gray-600">
-          Join our challenges and make a real difference! Compete with others, learn new sustainable habits, and earn rewards.
+    <div className="container mx-auto px-4 md:px-6">
+      <div className="text-center mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-primary">Ready to Level Up Your Eco-Game?</h2>
+        <p className="text-muted-foreground mt-2">Join our challenges, make a real difference, and earn rewards.</p>
+      </div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <ChallengeCard 
+          title="Recycle Hero Challenge"
+          description="Track your recycling efforts for a week and see how much you can divert from the landfill!"
+          icon={<Award className="h-10 w-10 text-accent" />}
+          timeframe="7 days"
+          participants="1,240"
+          imagePath="/static/WasteWiseLandingChallenge.png"
+        />
+        
+        <ChallengeCard 
+          title="Zero Waste Weekend"
+          description="Can you go an entire weekend without creating any landfill waste? Document your journey!"
+          icon={<Award className="h-10 w-10 text-accent" />}
+          timeframe="2 days"
+          participants="856"
+          imagePath="/static/recyclingwarrior.png"
+        />
+        
+        <ChallengeCard 
+          title="Community Cleanup"
+          description="Join or organize a local cleanup event and track the waste collected and properly sorted."
+          icon={<Award className="h-10 w-10 text-accent" />}
+          timeframe="Ongoing"
+          participants="3,120"
+          imagePath="/static/ecorookiebadge.png"
+        />
+      </div>
+      
+      <div className="mt-12 text-center">
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
+          Think you've got what it takes? Head over to the challenges page to see all active challenges and start earning badges!
         </p>
-        <div className="mt-10">
-          {/* You can add cards or interactive elements here to showcase specific challenges */}
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {/* Example Challenge Card */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900">Recycle Hero Challenge</h3>
-                <p className="mt-3 text-base text-gray-500">
-                  Track your recycling efforts for a week and see how much you can divert from the landfill!
-                </p>
-                <div className="mt-4">
-                  <a href="/challenges" className="text-indigo-600 hover:text-indigo-900 font-medium">
-                    Learn More & Join &rarr;
-                  </a>
-                </div>
-              </div>
-            </div>
+        <Link href="/challenges">
+          <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg hover:shadow-[0_0_15px_0px_hsl(var(--accent)/0.5)] transition-all duration-300 hover:scale-105">
+            Explore All Challenges
+          </Button>
+        </Link>
+      </div>
+    </div>
+  );
+};
 
-            {/* Add more challenge cards as needed */}
+interface ChallengeCardProps {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  timeframe: string;
+  participants: string;
+  imagePath: string;
+}
 
-          </div>
+const ChallengeCard: React.FC<ChallengeCardProps> = ({ 
+  title, 
+  description, 
+  icon, 
+  timeframe, 
+  participants,
+  imagePath
+}) => {
+  return (
+    <div className="bg-background/80 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden hover:shadow-[0_0_20px_0px_hsl(var(--accent)/0.7)] transition-all duration-300 hover:-translate-y-1 border border-transparent hover:border-accent">
+      <div className="h-48 relative">
+        <Image 
+          src={imagePath} 
+          alt={title}
+          fill
+          className="object-cover"
+        />
+      </div>
+      <div className="p-6">
+        <div className="flex items-center mb-3">
+          {icon}
+          <h3 className="text-xl font-semibold ml-2 text-primary">{title}</h3>
         </div>
-        <div className="mt-12">
-          <p className="text-lg text-gray-600">
-            Think you've got what it takes? Head over to the challenges page to see all active challenges!
-          </p>
-          <div className="mt-6">
-            <a
-              href="/challenges"
-              className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
-            >
-              Explore Challenges
-            </a>
+        <p className="text-muted-foreground mb-4">
+          {description}
+        </p>
+        <div className="flex justify-between text-sm text-muted-foreground">
+          <div className="flex items-center">
+            <Calendar className="h-4 w-4 mr-1 text-accent/80" />
+            <span>{timeframe}</span>
+          </div>
+          <div className="flex items-center">
+            <Users className="h-4 w-4 mr-1 text-accent/80" />
+            <span>{participants} participants</span>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

@@ -9,11 +9,20 @@ import EducationalPanel from "@/components/educational-panel";
 import RecentClassificationsPanel from "@/components/recent-classifications-panel";
 import { REGIONS } from "@/lib/types";
 import { Separator } from '@/components/ui/separator';
+import { useWeb3Auth } from "@/hooks/useWeb3Auth";
 
 export default function DashboardPage() {
   const [selectedRegion, setSelectedRegion] = useState<string>(REGIONS.find(r => r.value === "global")?.label || "Global (Default)");
   const [lastClassifiedItem, setLastClassifiedItem] = useState<string | null>(null);
   const [recentClassifications, setRecentClassifications] = useState<string[]>([]); // New state
+  const { user } = useWeb3Auth();
+
+  // Mock stats (replace with real data in future)
+  const stats = {
+    points: 1250,
+    challengesCompleted: 8,
+    itemsSorted: 15,
+  };
 
   const handleRegionChange = (regionValue: string) => {
     const region = REGIONS.find(r => r.value === regionValue);
@@ -33,6 +42,34 @@ export default function DashboardPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="w-full max-w-6xl mx-auto space-y-10">
+        {/* User Stats Panel */}
+        <section className="mb-8">
+          <div className="flex flex-col md:flex-row items-center justify-between bg-card/90 backdrop-blur-md rounded-xl shadow-lg p-6 gap-6">
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-3xl font-bold text-white">
+                {user ? user.address.slice(0, 6) + '...' + user.address.slice(-4) : <span>?</span>}
+              </div>
+              <div>
+                <div className="text-lg font-semibold text-foreground">{user ? user.address : "Not Connected"}</div>
+                <div className="text-sm text-muted-foreground">Your Wallet</div>
+              </div>
+            </div>
+            <div className="flex gap-6 mt-6 md:mt-0">
+              <div className="flex flex-col items-center bg-background/80 rounded-lg px-6 py-3 shadow">
+                <span className="text-2xl font-bold text-primary">{stats.points.toLocaleString()}</span>
+                <span className="text-xs text-muted-foreground mt-1">Points</span>
+              </div>
+              <div className="flex flex-col items-center bg-background/80 rounded-lg px-6 py-3 shadow">
+                <span className="text-2xl font-bold text-primary">{stats.challengesCompleted}</span>
+                <span className="text-xs text-muted-foreground mt-1">Challenges Completed</span>
+              </div>
+              <div className="flex flex-col items-center bg-background/80 rounded-lg px-6 py-3 shadow">
+                <span className="text-2xl font-bold text-primary">{stats.itemsSorted}</span>
+                <span className="text-xs text-muted-foreground mt-1">Items Sorted</span>
+              </div>
+            </div>
+          </div>
+        </section>
         <section aria-labelledby="region-selection-heading" className="mt-8">
           <h2 id="region-selection-heading" className="text-3xl font-semibold text-center mb-6 text-primary">
             WasteWise Dashboard
