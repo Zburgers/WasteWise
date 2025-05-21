@@ -20,10 +20,10 @@
   </p>
   
   <p>
-    <img src="https://img.shields.io/github/stars/yourusername/wastewise?style=for-the-badge" alt="Stars">
-    <img src="https://img.shields.io/github/forks/yourusername/wastewise?style=for-the-badge" alt="Forks">
-    <img src="https://img.shields.io/github/issues/yourusername/wastewise?style=for-the-badge" alt="Issues">
-    <img src="https://img.shields.io/github/license/yourusername/wastewise?style=for-the-badge" alt="License">
+    <img src="https://img.shields.io/github/stars/Zburgers/wastewise?style=for-the-badge" alt="Stars">
+    <img src="https://img.shields.io/github/forks/Zburgers/wastewise?style=for-the-badge" alt="Forks">
+    <img src="https://img.shields.io/github/issues/Zburgers/wastewise?style=for-the-badge" alt="Issues">
+    <img src="https://img.shields.io/github/license/Zburgers/wastewise?style=for-the-badge" alt="License">
   </p>
   
   <h3>🌱 Smart waste management for a cleaner future 🌱</h3>
@@ -128,7 +128,7 @@ graph LR
   
   ```bash
   # Clone repository
-  git clone https://github.com/yourusername/WasteWise.git
+  git clone https://github.com/Zburgers/WasteWise.git
   
   # Install dependencies
   npm install
@@ -150,7 +150,7 @@ graph LR
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/WasteWise.git
+   git clone https://github.com/Zburgers/WasteWise.git
    cd WasteWise
    ```
 
