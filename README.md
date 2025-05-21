@@ -11,7 +11,7 @@
  ╚══╝╚══╝ ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝ ╚══╝╚══╝ ╚═╝╚══════╝╚══════╝
 ```
 
-  <img src="public/logo.png" alt="WasteWise Logo" width="200"/>
+  <img src="public/static/WasteWiselogo1.png" alt="WasteWise Logo" width="200"/>
 
   <p>
     <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-13-black?style=for-the-badge&logo=next.js" alt="Next.js"></a>
