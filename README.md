@@ -1,4 +1,4 @@
-# WasteWise
+# ♻️🧠 WasteWise
 
 <div align="center">
   
@@ -26,90 +26,199 @@
     <img src="https://img.shields.io/github/license/Zburgers/wastewise?style=for-the-badge" alt="License">
   </p>
   
-  <h3>🌱 Smart waste management for a cleaner future 🌱</h3>
+  <h3>🌱 A gamified, AI-powered Web3 app designed to make recycling intuitive, engaging, and rewarding 🌱</h3>
   <p><em>Created by <a href="https://github.com/Zburgers/">Nakshatra (Zburgers)</a> for the Apex Hacks II Hackathon</em></p>
 </div>
 
-## 📋 Overview
+## 📋 Inspiration
 
-WasteWise is a modern waste management application that helps users track, manage, and reduce their waste footprint. Built with Next.js and Firebase, it provides a responsive and intuitive interface for waste tracking, recycling information, and environmental impact analytics.
+Ever stared at trash, wondering "Where does this even go?"
 
-<div align="center">
-  <img src="https://via.placeholder.com/800x400.png?text=WasteWise+Dashboard+Preview" alt="WasteWise Dashboard" width="80%"/>
-</div>
+We did too. That simple question sparked WasteWise — a gamified, AI-powered Web3 app designed to make recycling intuitive, engaging, and rewarding.
 
-## 🔄 How It Works
+We were inspired by:
+
+- The sheer confusion around waste classification
+- The massive environmental impact of improper recycling
+- The missed opportunity to teach people — especially kids — about sustainable living
+
+Tackling this serious challenge through something fun and intelligent was our moonshot.
+
+WasteWise is more than an app. It's a movement.
+A playful entry point into the world of eco-responsibility, blending AI + Web3 + gamification into a solution we actually want to use.
+
+In a world full of complex climate problems, WasteWise is our way of starting with one simple act: sorting trash smarter.
+
+## 🔄 What It Does
+
+WasteWise helps users identify and sort waste correctly using AI image classification, while earning points, completing challenges, and competing on leaderboards.
+
+It turns sustainability into a social, gamified, and educational experience — powered by modern tech.
 
 <div align="center">
   <table>
     <tr>
-      <td align="center"><img src="https://via.placeholder.com/80?text=📱" width="60px" /><br />Register & Log Waste</td>
+      <td align="center"><img src="https://via.placeholder.com/80?text=📱" width="60px" /><br />Upload Photo</td>
       <td align="center">➡️</td>
-      <td align="center"><img src="https://via.placeholder.com/80?text=📊" width="60px" /><br />Track & Analyze</td>
+      <td align="center"><img src="https://via.placeholder.com/80?text=🧠" width="60px" /><br />AI Classification</td>
       <td align="center">➡️</td>
-      <td align="center"><img src="https://via.placeholder.com/80?text=🎯" width="60px" /><br />Get Insights</td>
+      <td align="center"><img src="https://via.placeholder.com/80?text=🏆" width="60px" /><br />Earn Points</td>
       <td align="center">➡️</td>
-      <td align="center"><img src="https://via.placeholder.com/80?text=♻️" width="60px" /><br />Reduce Impact</td>
+      <td align="center"><img src="https://via.placeholder.com/80?text=🌍" width="60px" /><br />Compete Globally</td>
     </tr>
   </table>
 </div>
 
-## ✨ Features
+## 🧩 Core Features
 
 <div align="center">
   <table>
     <tr>
       <td>
-        <img src="https://via.placeholder.com/50?text=📝" width="40px" />
-        <h4>Waste Tracking</h4>
-        <p>Log and monitor your waste production with intuitive dashboards</p>
+        <img src="https://via.placeholder.com/50?text=🧠" width="40px" />
+        <h4>AI Waste Classifier</h4>
+        <p>Upload a photo, get instant classification + region-specific disposal tips</p>
       </td>
       <td>
-        <img src="https://via.placeholder.com/50?text=♻️" width="40px" />
-        <h4>Recycling Guide</h4>
-        <p>Learn what can be recycled in your area with our smart directory</p>
+        <img src="https://via.placeholder.com/50?text=🗨️" width="40px" />
+        <h4>Chat with WasteWizard</h4>
+        <p>AI chatbot answers recycling queries with local awareness</p>
       </td>
     </tr>
     <tr>
-      <td>
-        <img src="https://via.placeholder.com/50?text=📊" width="40px" />
-        <h4>Impact Dashboard</h4>
-        <p>Visualize your environmental impact with interactive charts</p>
-      </td>
       <td>
         <img src="https://via.placeholder.com/50?text=🏆" width="40px" />
         <h4>Community Challenges</h4>
-        <p>Join community initiatives to reduce waste together</p>
+        <p>Missions + social sharing for bonus points</p>
+      </td>
+      <td>
+        <img src="https://via.placeholder.com/50?text=📈" width="40px" />
+        <h4>Global Leaderboards</h4>
+        <p>Compete weekly, monthly, and all-time</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <img src="https://via.placeholder.com/50?text=🧬" width="40px" />
+        <h4>Levels + Badges</h4>
+        <p>XP-driven levels + achievement-based badge system</p>
+      </td>
+      <td>
+        <img src="https://via.placeholder.com/50?text=🪙" width="40px" />
+        <h4>Mintable NFT Badges</h4>
+        <p>On-chain proof of eco-effort</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <img src="https://via.placeholder.com/50?text=🔐" width="40px" />
+        <h4>Web3 Auth</h4>
+        <p>Sign in with MetaMask, Google, or Apple (WIP)</p>
+      </td>
+      <td>
+        <img src="https://via.placeholder.com/50?text=🌍" width="40px" />
+        <h4>Sustainability First</h4>
+        <p>Learn while taking action</p>
       </td>
     </tr>
   </table>
 </div>
 
-## 🛠️ Tech Stack
+<div align="center">
+  <p><em>It's not just a tool — it's a game, a classroom, and a movement.</em></p>
+</div>
+
+## 🔐️ How We Built It
+
+This project started as a curious experiment and scaled into an ambitious Web3 MVP.
+
+We started prototyping in Firebase Studio, brainstorming with Gemini + ChatGPT, then transitioned to a full-stack modern dev environment for polish and control.
+
+### 🔧 Build Phases
+
+**🧠 AI Core**
+- Built the image classification module for waste detection
+- Integrated WasteWizard chatbot via Genkit + Google AI
+
+**🎮 Gamification**
+- MVP point system, leveling, and badge logic (memory state)
+- Community challenge flow added
+
+**🌐 Web3 Auth & NFTs**
+- MetaMask integration via Web3Auth + Ethers.js
+- Badge-to-NFT minting for bragging rights
+
+**🎨 UI/UX**
+- Tailwind + Radix UI for clean design
+- Framer Motion for animations
+- Component render optimization for speed
+
+**🗃️ Backend (WIP)**
+- Partial PostgreSQL + Prisma setup
+- Mocked in-memory state for fast prototyping
+
+### 🧰 Tech Stack
 
 <div align="center">
   <table>
     <tr>
-      <td align="center"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nextjs/nextjs-original.svg" width="40px" /><br/>Next.js</td>
-      <td align="center"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" width="40px" /><br/>React</td>
-      <td align="center"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" width="40px" /><br/>TypeScript</td>
-      <td align="center"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/firebase/firebase-plain.svg" width="40px" /><br/>Firebase</td>
-      <td align="center"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tailwindcss/tailwindcss-plain.svg" width="40px" /><br/>Tailwind</td>
+      <th>Layer</th>
+      <th>Technologies Used</th>
     </tr>
-  </table>
-</div>
-
-## 📊 Analytics Dashboard
-
-<div align="center">
-  <table>
     <tr>
-      <td width="33%"><img src="https://via.placeholder.com/300x200?text=Waste+Metrics" /></td>
-      <td width="33%"><img src="https://via.placeholder.com/300x200?text=Recycling+Progress" /></td>
-      <td width="33%"><img src="https://via.placeholder.com/300x200?text=Carbon+Footprint" /></td>
+      <td>Frontend</td>
+      <td>Next.js, React, TypeScript, Tailwind CSS, Radix UI, Framer Motion</td>
+    </tr>
+    <tr>
+      <td>State/Forms</td>
+      <td>React Hook Form, Tanstack React Query</td>
+    </tr>
+    <tr>
+      <td>Data Viz</td>
+      <td>Recharts (Leaflet dropped)</td>
+    </tr>
+    <tr>
+      <td>Backend</td>
+      <td>Next.js API Routes, Prisma, PostgreSQL (partial), Firebase</td>
+    </tr>
+    <tr>
+      <td>AI</td>
+      <td>Genkit, Google AI</td>
+    </tr>
+    <tr>
+      <td>Auth/Web3</td>
+      <td>Firebase Auth, Web3Auth, WalletConnect, MetaMask, Ethers.js</td>
+    </tr>
+    <tr>
+      <td>Tooling</td>
+      <td>ESLint, dotenv, Turbopack, Patch-package, TSX</td>
     </tr>
   </table>
 </div>
+
+## 🚧 Challenges We Ran Into
+
+- 🗺️ **Map module bugs (Leaflet)**: Dropped to prioritize core functionality
+- ⚙️ **Backend bottlenecks**: Time constraints limited DB implementation
+- 🎞️ **Framer Motion**: Performance impact required animation cuts
+- 🔐 **Apple OAuth**: Needed credentials we couldn't fetch in time
+- ⏱️ **Time pressure**: Building AI + Web3 + gamification in 48 hrs was intense
+
+## ✅ Accomplishments We're Proud Of
+
+- 🎯 Shipped a fully functional MVP with real UX
+- 🚀 Integrated Web3: Wallet auth + NFT badge minting
+- 🎮 Built a gamified platform that's fun and educational
+- 💡 Made something we'd actually use
+- ♻️ Built a tool that blends sustainability, tech, and behavior change
+
+## 🧠 What We Learned
+
+- 🔍 Polished solutions require tough trade-offs
+- 🤝 Gamification can drive real change
+- 🧠 Firebase Studio + Gemini = MVP prototyping superpower
+- 💡 Web3 isn't scary — it enables trust + ownership
+- 🌱 Recycling in Delhi is broken — we built a starting point
 
 ## 🚀 Quick Start
 
@@ -136,8 +245,6 @@ graph LR
   # Run development server
   npm run dev
   ```
-  
-  <img src="https://via.placeholder.com/800x350?text=Development+Environment" width="80%" />
 </div>
 
 ### Prerequisites
@@ -194,40 +301,10 @@ graph LR
   </table>
 </div>
 
-## 📖 Usage
+## 💚 Final Note
 
-To get started with WasteWise:
-
-<div align="center">
-  <table>
-    <tr>
-      <td align="center"><img src="https://via.placeholder.com/60?text=1" width="40px" /><br/>Sign up</td>
-      <td align="center"><img src="https://via.placeholder.com/60?text=2" width="40px" /><br/>Set up profile</td>
-      <td align="center"><img src="https://via.placeholder.com/60?text=3" width="40px" /><br/>Log waste</td>
-      <td align="center"><img src="https://via.placeholder.com/60?text=4" width="40px" /><br/>Track progress</td>
-    </tr>
-  </table>
-</div>
-
-For more detailed usage instructions, check out our [User Guide](docs/user-guide.md).
-
-## 🗓️ Roadmap
-
-<div align="center">
-  
-```mermaid
-timeline
-    title WasteWise Development Roadmap
-    section 2023
-        Q3 : Core Application : User Authentication : Waste Logging
-        Q4 : Analytics Dashboard : Community Features
-    section 2024
-        Q1 : Mobile App : Advanced Analytics
-        Q2 : Gamification : AI Recommendations
-        Q3 : IoT Integration : Smart Bin Connectivity
-```
-
-</div>
+WasteWise is more than a hackathon project.
+It's a bold, beautiful step toward a cleaner, smarter world — powered by AI, Web3, and people like you.
 
 ## 🧪 Testing
 
