@@ -23,11 +23,11 @@ export function BadgeDisplay({ badges }: BadgeDisplayProps) {
               <img
                 src={badge.imageUrl}
                 alt={badge.name}
-                className="w-6 h-6 rounded-full"
+                className="w-8 h-8 rounded-full border-2 border-green-200 shadow-sm hover:scale-110 transition-transform"
               />
             </TooltipTrigger>
-            <TooltipContent>
-              <p>{badge.name}</p>
+            <TooltipContent className="bg-green-50 px-3 py-2 rounded border border-green-200 shadow-md">
+              <p className="text-green-800 font-medium">{badge.name}</p>
             </TooltipContent>
           </Tooltip>
         ))}

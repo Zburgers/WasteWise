@@ -25,7 +25,20 @@ export function errorResponse(message: string, status = 400): NextResponse {
 }
 
 export function getWalletAddress(headers: Headers): string | null {
-  return headers.get('x-user-address');
+  // Try to get the wallet address from the Authorization header first
+  const authHeader = headers.get('authorization');
+  if (authHeader && authHeader.startsWith('Bearer ')) {
+    return authHeader.substring(7); // Remove 'Bearer ' prefix
+  }
+  
+  // Fall back to the x-user-address header if Authorization is not present
+  const address = headers.get('x-user-address');
+  if (!address) {
+    console.warn('No wallet address found in headers');
+    return null;
+  }
+  
+  return address;
 }
 
 export async function getUserByWallet(walletAddress: string) {

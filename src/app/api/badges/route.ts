@@ -46,9 +46,47 @@ export async function GET(request: NextRequest) {
       },
     });
 
-    // Map badges with earned status
-    const badges = allBadges.map((badge: Badge) => {
-      const userBadge = user.badges.find((ub: UserBadge) => ub.badgeId === badge.id);
+    // Determine newly earned badges and create UserBadge entries
+    const newlyEarnedBadges: string[] = [];
+    const existingUserBadgeIds = new Set(user.badges.map(ub => ub.badgeId));
+
+    for (const badge of allBadges) {
+      let earned = false;
+      // Check earning criteria based on badge requirements
+      if (user.totalPoints >= badge.requiredPoints) {
+         // This is a simplified example; real badges might have other criteria (e.g., itemsSorted, challengesCompleted)
+         // TODO: Implement more complex badge earning logic based on other user stats
+         earned = true;
+      }
+
+      if (earned && !existingUserBadgeIds.has(badge.id)) {
+         // Badge is newly earned, create a UserBadge entry
+         await prisma.userBadge.create({
+           data: {
+             userId: user.id,
+             badgeId: badge.id,
+           },
+         });
+         newlyEarnedBadges.push(badge.id);
+      }
+    }
+
+    // Re-fetch user with updated badges if any were newly earned
+    let updatedUser = user;
+    if (newlyEarnedBadges.length > 0) {
+      updatedUser = await prisma.user.findUnique({
+         where: { walletAddress },
+         include: {
+           badges: {
+             include: { badge: true },
+           },
+         },
+      }) || user; // Fallback to original user if re-fetch fails
+    }
+
+    // Map badges with earned status (including newly earned ones)
+    const badgesWithStatus = allBadges.map((badge: Badge) => {
+      const userBadge = updatedUser.badges.find((ub: UserBadge & { badge: Badge }) => ub.badgeId === badge.id);
       return {
         ...badge,
         earned: !!userBadge,
@@ -57,12 +95,14 @@ export async function GET(request: NextRequest) {
     });
 
     return successResponse({
-      badges,
-      totalEarned: user.badges.length,
+      badges: badgesWithStatus,
+      totalEarned: updatedUser.badges.length,
       totalBadges: allBadges.length,
+      newlyEarnedBadgeIds: newlyEarnedBadges, // Optionally return IDs of newly earned badges
     });
   } catch (error) {
     console.error('Badges error:', error);
+    // Return a more generic error to the client for security
     return errorResponse('Failed to fetch badges', 500);
   }
 }

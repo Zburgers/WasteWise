@@ -7,6 +7,7 @@ import Footer from '@/components/layout/footer';
 import ClientLayout from '@/components/layout/ClientLayout';
 import { AuthModalProvider } from '@/hooks/useAuthModal';
 import { WalletProvider } from '../context/WalletContext';
+import ClientErrorBoundary from '@/components/ClientErrorBoundary';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -33,14 +34,16 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}>
         <AuthModalProvider>
           <WalletProvider>
-        <Navbar />
-        <main className="flex-grow">
-              <ClientLayout>
-          {children}
-              </ClientLayout>
-        </main>
-        <Footer />
-        <Toaster />
+            <ClientErrorBoundary>
+              <Navbar />
+              <main className="flex-grow">
+                <ClientLayout>
+                  {children}
+                </ClientLayout>
+              </main>
+              <Footer />
+              <Toaster />
+            </ClientErrorBoundary>
           </WalletProvider>
         </AuthModalProvider>
       </body>

@@ -10,6 +10,7 @@ import { getCurrentWeb3AuthInstance } from './web3auth';
 // Session storage keys
 const SESSION_STORAGE_KEY = 'wastewise_user_session';
 const SESSION_TIMEOUT_KEY = 'wastewise_session_timeout';
+const USER_EXISTS_KEY = 'wastewise_user_exists';
 
 // Session timeout (24 hours in milliseconds)
 const SESSION_TIMEOUT = 24 * 60 * 60 * 1000;
@@ -24,6 +25,7 @@ export interface UserSession {
   profileImage?: string;
   chainId?: string;
   chainName?: string;
+  existsInDatabase?: boolean;
 }
 
 /**
@@ -179,4 +181,71 @@ export const updateSessionData = async (data: Partial<UserSession>): Promise<Use
   
   saveSessionToStorage(updatedSession);
   return updatedSession;
+};
+
+/**
+ * Checks if a user exists in the database
+ */
+export const checkUserExists = async (walletAddress: string): Promise<boolean> => {
+  try {
+    // First check if we have cached the result
+    const cachedResult = localStorage.getItem(`${USER_EXISTS_KEY}_${walletAddress}`);
+    if (cachedResult !== null) {
+      return cachedResult === 'true';
+    }
+
+    const response = await fetch('/api/user-exists', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ walletAddress }),
+    });
+
+    if (!response.ok) {
+      console.error('Failed to check if user exists:', response.status, response.statusText);
+      return false;
+    }
+
+    const data = await response.json();
+    // Cache the result for 1 hour
+    localStorage.setItem(`${USER_EXISTS_KEY}_${walletAddress}`, data.exists.toString());
+    localStorage.setItem(`${USER_EXISTS_KEY}_${walletAddress}_timestamp`, Date.now().toString());
+    return data.exists;
+  } catch (error) {
+    console.error('Error checking if user exists:', error);
+    return false;
+  }
+};
+
+/**
+ * Registers a new user to the database
+ */
+export const registerUser = async (walletAddress: string, name?: string, email?: string): Promise<boolean> => {
+  try {
+    const response = await fetch('/api/user-register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        walletAddress,
+        name,
+        email,
+      }),
+    });
+
+    if (!response.ok) {
+      console.error('Failed to register user:', response.status, response.statusText);
+      return false;
+    }
+
+    // Update the cache to indicate user exists
+    localStorage.setItem(`${USER_EXISTS_KEY}_${walletAddress}`, 'true');
+    localStorage.setItem(`${USER_EXISTS_KEY}_${walletAddress}_timestamp`, Date.now().toString());
+    return true;
+  } catch (error) {
+    console.error('Error registering user:', error);
+    return false;
+  }
 };

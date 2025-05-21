@@ -50,10 +50,12 @@ export async function POST(request: NextRequest) {
       });
     } catch (error) {
       console.error('Error processing image:', error);
+      // Return a more generic error to the client for security
       return errorResponse('Failed to process image', 500);
     }
   } catch (error) {
     console.error('Profile image upload error:', error);
+    // Return a more generic error to the client for security
     return errorResponse('Failed to update profile image', 500);
   }
 }
@@ -80,6 +82,7 @@ export async function GET(request: NextRequest) {
     });
   } catch (error) {
     console.error('Profile image fetch error:', error);
+    // Return a more generic error to the client for security
     return errorResponse('Failed to fetch profile image', 500);
   }
 }

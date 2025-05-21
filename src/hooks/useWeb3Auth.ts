@@ -7,6 +7,7 @@ interface User {
   address: string;
   email?: string;
   name?: string;
+  profileImage?: string;
 }
 
 interface Web3AuthState {
@@ -51,6 +52,7 @@ export const useWeb3Auth = () => {
             address: sessionData.address,
             email: sessionData.email,
             name: sessionData.name,
+            profileImage: sessionData.profileImage,
           },
         }));
         return;
@@ -116,6 +118,7 @@ export const useWeb3Auth = () => {
       address,
       email: userInfo?.email,
       name: userInfo?.name,
+      profileImage: userInfo?.profileImage,
     };
   };
 
@@ -123,7 +126,7 @@ export const useWeb3Auth = () => {
     try {
       // Import auth-reset utilities and session utilities
       const { startLoginAttempt, clearLoginAttempt, checkAndResetStalledLogin } = await import('../lib/auth-reset');
-      const { getCurrentSession, updateSessionData } = await import('../lib/session');
+      const { getCurrentSession, updateSessionData, checkUserExists, registerUser } = await import('../lib/session');
       
       // Check for and reset any stalled login attempts
       checkAndResetStalledLogin();
@@ -146,6 +149,12 @@ export const useWeb3Auth = () => {
         const ethersProvider = new BrowserProvider(provider as any);
         const balance = await ethersProvider.getBalance(user.address);
         const formattedBalance = formatEther(balance);
+        
+        // Check if user exists and register if needed
+        const userExists = await checkUserExists(user.address);
+        if (!userExists) {
+          await registerUser(user.address, user.name, user.email);
+        }
         
         // Update session with balance info
         await updateSessionData({

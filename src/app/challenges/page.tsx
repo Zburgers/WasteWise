@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FC, useEffect } from 'react';
+import { useState, type FC, useEffect, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Progress } from '@/components/ui/progress';
@@ -11,43 +11,86 @@ import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import ChallengeCard from '@/components/challenge-card';
 import Link from 'next/link';
-
-// Mock Data - In a real app, this would come from a backend
-const MOCK_AVAILABLE_CHALLENGES: Challenge[] = [
-  { id: 'plastic_bottle_free_week', title: 'Plastic Bottle Free Week', description: 'Avoid using any single-use plastic bottles for 7 days.', icon: GlassWater, category: 'plastic', goal: 7, unit: 'days' },
-  { id: 'reusable_bag_hero', title: 'Reusable Bag Hero', description: 'Use reusable bags for all your shopping trips for one week.', icon: ShoppingBag, category: 'plastic', goal: 5, unit: 'shopping trips' },
-  { id: 'compost_champion', title: 'Compost Champion', description: 'Compost all your food scraps for 5 consecutive days.', icon: Apple, category: 'food_waste', goal: 5, unit: 'days' },
-  { id: 'no_takeout_containers', title: 'No Takeout Waste', description: 'Avoid single-use takeout containers for 3 meals.', icon: Zap, category: 'general', goal: 3, unit: 'meals' },
-  { id: 'recycling_master', title: 'Recycling Master', description: 'Properly sort and recycle 15 items according to local guidelines.', icon: Recycle, category: 'recycling', goal: 15, unit: 'items' },
-  { id: 'energy_saver', title: 'Energy Saver', description: 'Reduce your energy consumption by turning off unused electronics for a week.', icon: Target, category: 'energy', goal: 7, unit: 'days' },
-  { id: 'water_conservation', title: 'Water Guardian', description: 'Track and reduce your water usage by 20% for 5 days.', icon: CheckCircle, category: 'water', goal: 5, unit: 'days' },
-  { id: 'zero_waste_weekend', title: 'Zero Waste Weekend', description: 'Go an entire weekend without creating any landfill waste.', icon: Award, category: 'general', goal: 1, unit: 'weekend' },
-];
+import { useWeb3Auth } from '@/hooks/useWeb3Auth';
 
 export default function ChallengesPage() {
   const { toast } = useToast();
-  const [availableChallenges, setAvailableChallenges] = useState<Challenge[]>(MOCK_AVAILABLE_CHALLENGES);
+  const { user, connected } = useWeb3Auth();
+  const [availableChallenges, setAvailableChallenges] = useState<Challenge[]>([]);
   const [userChallenges, setUserChallenges] = useState<UserChallenge[]>([]);
   const [selectedChallengeForLog, setSelectedChallengeForLog] = useState<UserChallenge | null>(null);
   const [isLogModalOpen, setIsLogModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<string>("available");
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
 
-  // Get unique categories from all challenges
-  const availableCategories = ["all", ...new Set(MOCK_AVAILABLE_CHALLENGES.map(c => c.category))];
+  const fetchChallenges = useCallback(async () => {
+    if (!connected || !user?.address) return;
+    try {
+      // Fetch all challenges that the user hasn't joined yet
+      const availableResponse = await fetch('/api/challenges/available', {
+        headers: { 'Authorization': `Bearer ${user.address}` }
+      });
+      const availableData = await availableResponse.json();
 
-  const handleJoinChallenge = (challengeId: string) => {
-    const challengeToJoin = availableChallenges.find(c => c.id === challengeId);
-    if (challengeToJoin && !userChallenges.some(uc => uc.id === challengeId)) {
-      const newUserChallenge: UserChallenge = {
-        ...challengeToJoin,
-        userId: 'mockUser', 
-        status: 'active',
-        currentProgress: 0,
-        startDate: new Date(),
-      };
-      setUserChallenges(prev => [...prev, newUserChallenge]);
-      toast({ title: "Challenge Joined!", description: `You've started the "${challengeToJoin.title}" challenge.`, className: "bg-accent text-accent-foreground border-accent/50" });
+      if (availableData.success) {
+        setAvailableChallenges(availableData.data.challenges);
+      } else {
+        toast({ title: "Error fetching available challenges", description: availableData.error || "Unknown error", variant: "destructive" });
+      }
+
+      // Fetch user's active and completed challenges
+      const userResponse = await fetch('/api/challenges', {
+        headers: { 'Authorization': `Bearer ${user.address}` }
+      });
+      const userData = await userResponse.json();
+
+      if (userData.success) {
+        // Combine active and completed challenges from the user's data
+        const allUserChallenges = [...userData.data.active, ...userData.data.completed];
+        setUserChallenges(allUserChallenges);
+      } else {
+        toast({ title: "Error fetching user challenges", description: userData.error || "Unknown error", variant: "destructive" });
+      }
+
+    } catch (error) {
+      console.error("Error fetching challenges:", error);
+      toast({ title: "Error", description: "Failed to fetch challenge data.", variant: "destructive" });
+    }
+  }, [connected, user?.address, toast]);
+
+  useEffect(() => {
+    fetchChallenges();
+  }, [fetchChallenges]);
+
+  // Get unique categories from all challenges
+  const availableCategories = ["all", ...new Set(availableChallenges.map(c => c.category)), ...new Set(userChallenges.map(c => c.challenge.category))];
+
+  const handleJoinChallenge = async (challengeId: string) => {
+    if (!connected || !user?.address) {
+      toast({ title: "Not Connected", description: "Please connect your wallet to join challenges.", variant: "destructive" });
+      return;
+    }
+    try {
+      const response = await fetch('/api/challenges', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${user.address}`,
+        },
+        body: JSON.stringify({ challengeId }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast({ title: "Challenge Joined!", description: data.message, className: "bg-accent text-accent-foreground border-accent/50" });
+        fetchChallenges(); // Refetch challenges to update UI
+      } else {
+        toast({ title: "Error joining challenge", description: data.error || "Unknown error", variant: "destructive" });
+      }
+    } catch (error) {
+      console.error("Error joining challenge:", error);
+      toast({ title: "Error", description: "Failed to join challenge.", variant: "destructive" });
     }
   };
 
@@ -56,45 +99,41 @@ export default function ChallengesPage() {
     setIsLogModalOpen(true);
   };
   
-  const handleSaveLog = (challengeId: string, progressIncrement: number) => {
-    let completedChallenge: UserChallenge | null = null;
-    
-    setUserChallenges(prevUserChallenges =>
-      prevUserChallenges.map(uc => {
-        if (uc.id === challengeId) {
-          const newProgress = Math.min(uc.currentProgress + progressIncrement, uc.goal);
-          let newStatus = uc.status;
-          if (newProgress >= uc.goal) {
-            newStatus = 'completed';
-            completedChallenge = { ...uc, currentProgress: newProgress, status: newStatus, completedDate: new Date() };
-          }
-          return { ...uc, currentProgress: newProgress, status: newStatus, completedDate: newStatus === 'completed' ? new Date() : uc.completedDate };
-        }
-        return uc;
-      })
-    );
-
-    // Show progress toast
-    toast({ 
-      title: "Progress Logged!", 
-      description: `Your progress for "${selectedChallengeForLog?.title}" has been updated.`, 
-      className: "bg-primary/80 text-primary-foreground border-primary/50" 
-    });
-
-    // Show completion toast if challenge was completed
-    if (completedChallenge) {
-      toast({
-        title: "Challenge Completed!",
-        description: `Congratulations on completing "${completedChallenge.title}"!`,
-        variant: "default",
-        className: "bg-green-600 border-green-700 text-white"
+  const handleSaveLog = async (challengeId: string, progressIncrement: number) => {
+    if (!connected || !user?.address) {
+      toast({ title: "Not Connected", description: "Please connect your wallet to log progress.", variant: "destructive" });
+      return;
+    }
+    try {
+      // Assuming a new endpoint or modification to existing for logging manual progress
+      const response = await fetch(`/api/challenges/${challengeId}/log`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${user.address}`,
+        },
+        body: JSON.stringify({ progressIncrement }),
       });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast({ title: "Progress Logged!", description: data.message, className: "bg-primary/80 text-primary-foreground border-primary/50" });
+        fetchChallenges(); // Refetch challenges to update UI
+        // TODO: Handle potential challenge completion notification from backend response
+      } else {
+        toast({ title: "Error logging progress", description: data.error || "Unknown error", variant: "destructive" });
+      }
+    } catch (error) {
+      console.error("Error logging progress:", error);
+      toast({ title: "Error", description: "Failed to log challenge progress.", variant: "destructive" });
     }
   };
 
   const getFilteredChallenges = (status: 'available' | 'active' | 'completed') => {
     if (status === 'available') {
-      let filtered = availableChallenges.filter(ac => !userChallenges.some(uc => uc.id === ac.id));
+      // Available challenges are fetched directly from backend, no need to filter against userChallenges locally
+      let filtered = availableChallenges;
       // Apply category filter if not "all"
       if (categoryFilter !== "all") {
         filtered = filtered.filter(c => c.category === categoryFilter);

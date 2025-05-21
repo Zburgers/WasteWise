@@ -123,11 +123,19 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   walletAddress: 'walletAddress',
+  name: 'name',
+  email: 'email',
+  profileImage: 'profileImage',
   totalPoints: 'totalPoints',
   badgeLevel: 'badgeLevel',
+  itemsSorted: 'itemsSorted',
+  challengesCompleted: 'challengesCompleted',
+  currentStreak: 'currentStreak',
+  lastSortEventDate: 'lastSortEventDate',
   lastLogin: 'lastLogin',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  onboarded: 'onboarded'
 };
 
 exports.Prisma.ChallengeScalarFieldEnum = {

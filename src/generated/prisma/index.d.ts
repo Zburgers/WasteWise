@@ -1449,41 +1449,71 @@ export namespace Prisma {
   export type UserAvgAggregateOutputType = {
     totalPoints: number | null
     badgeLevel: number | null
+    itemsSorted: number | null
+    challengesCompleted: number | null
+    currentStreak: number | null
   }
 
   export type UserSumAggregateOutputType = {
     totalPoints: number | null
     badgeLevel: number | null
+    itemsSorted: number | null
+    challengesCompleted: number | null
+    currentStreak: number | null
   }
 
   export type UserMinAggregateOutputType = {
     id: string | null
     walletAddress: string | null
+    name: string | null
+    email: string | null
+    profileImage: string | null
     totalPoints: number | null
     badgeLevel: number | null
+    itemsSorted: number | null
+    challengesCompleted: number | null
+    currentStreak: number | null
+    lastSortEventDate: Date | null
     lastLogin: Date | null
     createdAt: Date | null
     updatedAt: Date | null
+    onboarded: boolean | null
   }
 
   export type UserMaxAggregateOutputType = {
     id: string | null
     walletAddress: string | null
+    name: string | null
+    email: string | null
+    profileImage: string | null
     totalPoints: number | null
     badgeLevel: number | null
+    itemsSorted: number | null
+    challengesCompleted: number | null
+    currentStreak: number | null
+    lastSortEventDate: Date | null
     lastLogin: Date | null
     createdAt: Date | null
     updatedAt: Date | null
+    onboarded: boolean | null
   }
 
   export type UserCountAggregateOutputType = {
     id: number
     walletAddress: number
+    name: number
+    email: number
+    profileImage: number
     totalPoints: number
     badgeLevel: number
+    itemsSorted: number
+    challengesCompleted: number
+    currentStreak: number
+    lastSortEventDate: number
     lastLogin: number
     createdAt: number
     updatedAt: number
+    onboarded: number
     _all: number
   }
 
@@ -1491,41 +1521,71 @@ export namespace Prisma {
   export type UserAvgAggregateInputType = {
     totalPoints?: true
     badgeLevel?: true
+    itemsSorted?: true
+    challengesCompleted?: true
+    currentStreak?: true
   }
 
   export type UserSumAggregateInputType = {
     totalPoints?: true
     badgeLevel?: true
+    itemsSorted?: true
+    challengesCompleted?: true
+    currentStreak?: true
   }
 
   export type UserMinAggregateInputType = {
     id?: true
     walletAddress?: true
+    name?: true
+    email?: true
+    profileImage?: true
     totalPoints?: true
     badgeLevel?: true
+    itemsSorted?: true
+    challengesCompleted?: true
+    currentStreak?: true
+    lastSortEventDate?: true
     lastLogin?: true
     createdAt?: true
     updatedAt?: true
+    onboarded?: true
   }
 
   export type UserMaxAggregateInputType = {
     id?: true
     walletAddress?: true
+    name?: true
+    email?: true
+    profileImage?: true
     totalPoints?: true
     badgeLevel?: true
+    itemsSorted?: true
+    challengesCompleted?: true
+    currentStreak?: true
+    lastSortEventDate?: true
     lastLogin?: true
     createdAt?: true
     updatedAt?: true
+    onboarded?: true
   }
 
   export type UserCountAggregateInputType = {
     id?: true
     walletAddress?: true
+    name?: true
+    email?: true
+    profileImage?: true
     totalPoints?: true
     badgeLevel?: true
+    itemsSorted?: true
+    challengesCompleted?: true
+    currentStreak?: true
+    lastSortEventDate?: true
     lastLogin?: true
     createdAt?: true
     updatedAt?: true
+    onboarded?: true
     _all?: true
   }
 
@@ -1618,11 +1678,19 @@ export namespace Prisma {
   export type UserGroupByOutputType = {
     id: string
     walletAddress: string
+    name: string | null
+    email: string | null
+    profileImage: string | null
     totalPoints: number
     badgeLevel: number
+    itemsSorted: number
+    challengesCompleted: number
+    currentStreak: number
+    lastSortEventDate: Date | null
     lastLogin: Date
     createdAt: Date
     updatedAt: Date
+    onboarded: boolean
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -1647,11 +1715,19 @@ export namespace Prisma {
   export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     walletAddress?: boolean
+    name?: boolean
+    email?: boolean
+    profileImage?: boolean
     totalPoints?: boolean
     badgeLevel?: boolean
+    itemsSorted?: boolean
+    challengesCompleted?: boolean
+    currentStreak?: boolean
+    lastSortEventDate?: boolean
     lastLogin?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    onboarded?: boolean
     challenges?: boolean | User$challengesArgs<ExtArgs>
     badges?: boolean | User$badgesArgs<ExtArgs>
     sortEvents?: boolean | User$sortEventsArgs<ExtArgs>
@@ -1661,34 +1737,58 @@ export namespace Prisma {
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     walletAddress?: boolean
+    name?: boolean
+    email?: boolean
+    profileImage?: boolean
     totalPoints?: boolean
     badgeLevel?: boolean
+    itemsSorted?: boolean
+    challengesCompleted?: boolean
+    currentStreak?: boolean
+    lastSortEventDate?: boolean
     lastLogin?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    onboarded?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     walletAddress?: boolean
+    name?: boolean
+    email?: boolean
+    profileImage?: boolean
     totalPoints?: boolean
     badgeLevel?: boolean
+    itemsSorted?: boolean
+    challengesCompleted?: boolean
+    currentStreak?: boolean
+    lastSortEventDate?: boolean
     lastLogin?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    onboarded?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
     id?: boolean
     walletAddress?: boolean
+    name?: boolean
+    email?: boolean
+    profileImage?: boolean
     totalPoints?: boolean
     badgeLevel?: boolean
+    itemsSorted?: boolean
+    challengesCompleted?: boolean
+    currentStreak?: boolean
+    lastSortEventDate?: boolean
     lastLogin?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    onboarded?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "walletAddress" | "totalPoints" | "badgeLevel" | "lastLogin" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "walletAddress" | "name" | "email" | "profileImage" | "totalPoints" | "badgeLevel" | "itemsSorted" | "challengesCompleted" | "currentStreak" | "lastSortEventDate" | "lastLogin" | "createdAt" | "updatedAt" | "onboarded", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     challenges?: boolean | User$challengesArgs<ExtArgs>
     badges?: boolean | User$badgesArgs<ExtArgs>
@@ -1708,11 +1808,19 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       walletAddress: string
+      name: string | null
+      email: string | null
+      profileImage: string | null
       totalPoints: number
       badgeLevel: number
+      itemsSorted: number
+      challengesCompleted: number
+      currentStreak: number
+      lastSortEventDate: Date | null
       lastLogin: Date
       createdAt: Date
       updatedAt: Date
+      onboarded: boolean
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -2141,11 +2249,19 @@ export namespace Prisma {
   interface UserFieldRefs {
     readonly id: FieldRef<"User", 'String'>
     readonly walletAddress: FieldRef<"User", 'String'>
+    readonly name: FieldRef<"User", 'String'>
+    readonly email: FieldRef<"User", 'String'>
+    readonly profileImage: FieldRef<"User", 'String'>
     readonly totalPoints: FieldRef<"User", 'Int'>
     readonly badgeLevel: FieldRef<"User", 'Int'>
+    readonly itemsSorted: FieldRef<"User", 'Int'>
+    readonly challengesCompleted: FieldRef<"User", 'Int'>
+    readonly currentStreak: FieldRef<"User", 'Int'>
+    readonly lastSortEventDate: FieldRef<"User", 'DateTime'>
     readonly lastLogin: FieldRef<"User", 'DateTime'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
+    readonly onboarded: FieldRef<"User", 'Boolean'>
   }
     
 
@@ -8228,11 +8344,19 @@ export namespace Prisma {
   export const UserScalarFieldEnum: {
     id: 'id',
     walletAddress: 'walletAddress',
+    name: 'name',
+    email: 'email',
+    profileImage: 'profileImage',
     totalPoints: 'totalPoints',
     badgeLevel: 'badgeLevel',
+    itemsSorted: 'itemsSorted',
+    challengesCompleted: 'challengesCompleted',
+    currentStreak: 'currentStreak',
+    lastSortEventDate: 'lastSortEventDate',
     lastLogin: 'lastLogin',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    onboarded: 'onboarded'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -8403,11 +8527,19 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     id?: StringFilter<"User"> | string
     walletAddress?: StringFilter<"User"> | string
+    name?: StringNullableFilter<"User"> | string | null
+    email?: StringNullableFilter<"User"> | string | null
+    profileImage?: StringNullableFilter<"User"> | string | null
     totalPoints?: IntFilter<"User"> | number
     badgeLevel?: IntFilter<"User"> | number
+    itemsSorted?: IntFilter<"User"> | number
+    challengesCompleted?: IntFilter<"User"> | number
+    currentStreak?: IntFilter<"User"> | number
+    lastSortEventDate?: DateTimeNullableFilter<"User"> | Date | string | null
     lastLogin?: DateTimeFilter<"User"> | Date | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    onboarded?: BoolFilter<"User"> | boolean
     challenges?: UserChallengeListRelationFilter
     badges?: UserBadgeListRelationFilter
     sortEvents?: SortEventListRelationFilter
@@ -8416,11 +8548,19 @@ export namespace Prisma {
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
     walletAddress?: SortOrder
+    name?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
+    profileImage?: SortOrderInput | SortOrder
     totalPoints?: SortOrder
     badgeLevel?: SortOrder
+    itemsSorted?: SortOrder
+    challengesCompleted?: SortOrder
+    currentStreak?: SortOrder
+    lastSortEventDate?: SortOrderInput | SortOrder
     lastLogin?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    onboarded?: SortOrder
     challenges?: UserChallengeOrderByRelationAggregateInput
     badges?: UserBadgeOrderByRelationAggregateInput
     sortEvents?: SortEventOrderByRelationAggregateInput
@@ -8432,11 +8572,19 @@ export namespace Prisma {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
+    name?: StringNullableFilter<"User"> | string | null
+    email?: StringNullableFilter<"User"> | string | null
+    profileImage?: StringNullableFilter<"User"> | string | null
     totalPoints?: IntFilter<"User"> | number
     badgeLevel?: IntFilter<"User"> | number
+    itemsSorted?: IntFilter<"User"> | number
+    challengesCompleted?: IntFilter<"User"> | number
+    currentStreak?: IntFilter<"User"> | number
+    lastSortEventDate?: DateTimeNullableFilter<"User"> | Date | string | null
     lastLogin?: DateTimeFilter<"User"> | Date | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    onboarded?: BoolFilter<"User"> | boolean
     challenges?: UserChallengeListRelationFilter
     badges?: UserBadgeListRelationFilter
     sortEvents?: SortEventListRelationFilter
@@ -8445,11 +8593,19 @@ export namespace Prisma {
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
     walletAddress?: SortOrder
+    name?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
+    profileImage?: SortOrderInput | SortOrder
     totalPoints?: SortOrder
     badgeLevel?: SortOrder
+    itemsSorted?: SortOrder
+    challengesCompleted?: SortOrder
+    currentStreak?: SortOrder
+    lastSortEventDate?: SortOrderInput | SortOrder
     lastLogin?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    onboarded?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -8463,11 +8619,19 @@ export namespace Prisma {
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"User"> | string
     walletAddress?: StringWithAggregatesFilter<"User"> | string
+    name?: StringNullableWithAggregatesFilter<"User"> | string | null
+    email?: StringNullableWithAggregatesFilter<"User"> | string | null
+    profileImage?: StringNullableWithAggregatesFilter<"User"> | string | null
     totalPoints?: IntWithAggregatesFilter<"User"> | number
     badgeLevel?: IntWithAggregatesFilter<"User"> | number
+    itemsSorted?: IntWithAggregatesFilter<"User"> | number
+    challengesCompleted?: IntWithAggregatesFilter<"User"> | number
+    currentStreak?: IntWithAggregatesFilter<"User"> | number
+    lastSortEventDate?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     lastLogin?: DateTimeWithAggregatesFilter<"User"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    onboarded?: BoolWithAggregatesFilter<"User"> | boolean
   }
 
   export type ChallengeWhereInput = {
@@ -8809,11 +8973,19 @@ export namespace Prisma {
   export type UserCreateInput = {
     id?: string
     walletAddress: string
+    name?: string | null
+    email?: string | null
+    profileImage?: string | null
     totalPoints?: number
     badgeLevel?: number
+    itemsSorted?: number
+    challengesCompleted?: number
+    currentStreak?: number
+    lastSortEventDate?: Date | string | null
     lastLogin?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
+    onboarded?: boolean
     challenges?: UserChallengeCreateNestedManyWithoutUserInput
     badges?: UserBadgeCreateNestedManyWithoutUserInput
     sortEvents?: SortEventCreateNestedManyWithoutUserInput
@@ -8822,11 +8994,19 @@ export namespace Prisma {
   export type UserUncheckedCreateInput = {
     id?: string
     walletAddress: string
+    name?: string | null
+    email?: string | null
+    profileImage?: string | null
     totalPoints?: number
     badgeLevel?: number
+    itemsSorted?: number
+    challengesCompleted?: number
+    currentStreak?: number
+    lastSortEventDate?: Date | string | null
     lastLogin?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
+    onboarded?: boolean
     challenges?: UserChallengeUncheckedCreateNestedManyWithoutUserInput
     badges?: UserBadgeUncheckedCreateNestedManyWithoutUserInput
     sortEvents?: SortEventUncheckedCreateNestedManyWithoutUserInput
@@ -8835,11 +9015,19 @@ export namespace Prisma {
   export type UserUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     walletAddress?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     totalPoints?: IntFieldUpdateOperationsInput | number
     badgeLevel?: IntFieldUpdateOperationsInput | number
+    itemsSorted?: IntFieldUpdateOperationsInput | number
+    challengesCompleted?: IntFieldUpdateOperationsInput | number
+    currentStreak?: IntFieldUpdateOperationsInput | number
+    lastSortEventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastLogin?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboarded?: BoolFieldUpdateOperationsInput | boolean
     challenges?: UserChallengeUpdateManyWithoutUserNestedInput
     badges?: UserBadgeUpdateManyWithoutUserNestedInput
     sortEvents?: SortEventUpdateManyWithoutUserNestedInput
@@ -8848,11 +9036,19 @@ export namespace Prisma {
   export type UserUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     walletAddress?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     totalPoints?: IntFieldUpdateOperationsInput | number
     badgeLevel?: IntFieldUpdateOperationsInput | number
+    itemsSorted?: IntFieldUpdateOperationsInput | number
+    challengesCompleted?: IntFieldUpdateOperationsInput | number
+    currentStreak?: IntFieldUpdateOperationsInput | number
+    lastSortEventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastLogin?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboarded?: BoolFieldUpdateOperationsInput | boolean
     challenges?: UserChallengeUncheckedUpdateManyWithoutUserNestedInput
     badges?: UserBadgeUncheckedUpdateManyWithoutUserNestedInput
     sortEvents?: SortEventUncheckedUpdateManyWithoutUserNestedInput
@@ -8861,31 +9057,55 @@ export namespace Prisma {
   export type UserCreateManyInput = {
     id?: string
     walletAddress: string
+    name?: string | null
+    email?: string | null
+    profileImage?: string | null
     totalPoints?: number
     badgeLevel?: number
+    itemsSorted?: number
+    challengesCompleted?: number
+    currentStreak?: number
+    lastSortEventDate?: Date | string | null
     lastLogin?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
+    onboarded?: boolean
   }
 
   export type UserUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     walletAddress?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     totalPoints?: IntFieldUpdateOperationsInput | number
     badgeLevel?: IntFieldUpdateOperationsInput | number
+    itemsSorted?: IntFieldUpdateOperationsInput | number
+    challengesCompleted?: IntFieldUpdateOperationsInput | number
+    currentStreak?: IntFieldUpdateOperationsInput | number
+    lastSortEventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastLogin?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboarded?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type UserUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     walletAddress?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     totalPoints?: IntFieldUpdateOperationsInput | number
     badgeLevel?: IntFieldUpdateOperationsInput | number
+    itemsSorted?: IntFieldUpdateOperationsInput | number
+    challengesCompleted?: IntFieldUpdateOperationsInput | number
+    currentStreak?: IntFieldUpdateOperationsInput | number
+    lastSortEventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastLogin?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboarded?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ChallengeCreateInput = {
@@ -9249,6 +9469,21 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -9260,6 +9495,17 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -9269,6 +9515,11 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type UserChallengeListRelationFilter = {
@@ -9289,6 +9540,11 @@ export namespace Prisma {
     none?: SortEventWhereInput
   }
 
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
   export type UserChallengeOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -9304,41 +9560,71 @@ export namespace Prisma {
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     walletAddress?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    profileImage?: SortOrder
     totalPoints?: SortOrder
     badgeLevel?: SortOrder
+    itemsSorted?: SortOrder
+    challengesCompleted?: SortOrder
+    currentStreak?: SortOrder
+    lastSortEventDate?: SortOrder
     lastLogin?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    onboarded?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
     totalPoints?: SortOrder
     badgeLevel?: SortOrder
+    itemsSorted?: SortOrder
+    challengesCompleted?: SortOrder
+    currentStreak?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
     id?: SortOrder
     walletAddress?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    profileImage?: SortOrder
     totalPoints?: SortOrder
     badgeLevel?: SortOrder
+    itemsSorted?: SortOrder
+    challengesCompleted?: SortOrder
+    currentStreak?: SortOrder
+    lastSortEventDate?: SortOrder
     lastLogin?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    onboarded?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
     id?: SortOrder
     walletAddress?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    profileImage?: SortOrder
     totalPoints?: SortOrder
     badgeLevel?: SortOrder
+    itemsSorted?: SortOrder
+    challengesCompleted?: SortOrder
+    currentStreak?: SortOrder
+    lastSortEventDate?: SortOrder
     lastLogin?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    onboarded?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
     totalPoints?: SortOrder
     badgeLevel?: SortOrder
+    itemsSorted?: SortOrder
+    challengesCompleted?: SortOrder
+    currentStreak?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -9359,6 +9645,24 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -9375,6 +9679,20 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -9389,9 +9707,12 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type ChallengeCountOrderByAggregateInput = {
@@ -9435,14 +9756,6 @@ export namespace Prisma {
   export type ChallengeSumOrderByAggregateInput = {
     goal?: SortOrder
     rewardPoints?: SortOrder
-  }
-
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type UserScalarRelationFilter = {
@@ -9498,26 +9811,6 @@ export namespace Prisma {
     progress?: SortOrder
   }
 
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
-  }
-
   export type BadgeCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -9557,24 +9850,6 @@ export namespace Prisma {
 
   export type BadgeSumOrderByAggregateInput = {
     requiredPoints?: SortOrder
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type BadgeScalarRelationFilter = {
@@ -9692,6 +9967,10 @@ export namespace Prisma {
     set?: string
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -9700,8 +9979,16 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type UserChallengeUpdateManyWithoutUserNestedInput = {
@@ -9802,10 +10089,6 @@ export namespace Prisma {
     connect?: UserChallengeWhereUniqueInput | UserChallengeWhereUniqueInput[]
   }
 
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
-  }
-
   export type UserChallengeUpdateManyWithoutChallengeNestedInput = {
     create?: XOR<UserChallengeCreateWithoutChallengeInput, UserChallengeUncheckedCreateWithoutChallengeInput> | UserChallengeCreateWithoutChallengeInput[] | UserChallengeUncheckedCreateWithoutChallengeInput[]
     connectOrCreate?: UserChallengeCreateOrConnectWithoutChallengeInput | UserChallengeCreateOrConnectWithoutChallengeInput[]
@@ -9874,10 +10157,6 @@ export namespace Prisma {
     connectOrCreate?: UserBadgeCreateOrConnectWithoutBadgeInput | UserBadgeCreateOrConnectWithoutBadgeInput[]
     createMany?: UserBadgeCreateManyBadgeInputEnvelope
     connect?: UserBadgeWhereUniqueInput | UserBadgeWhereUniqueInput[]
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type UserBadgeUpdateManyWithoutBadgeNestedInput = {
@@ -9964,6 +10243,20 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -9975,6 +10268,17 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -9984,6 +10288,11 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -10001,6 +10310,34 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -10030,6 +10367,20 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -10044,59 +10395,12 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type UserChallengeCreateWithoutUserInput = {
@@ -10308,11 +10612,19 @@ export namespace Prisma {
   export type UserCreateWithoutChallengesInput = {
     id?: string
     walletAddress: string
+    name?: string | null
+    email?: string | null
+    profileImage?: string | null
     totalPoints?: number
     badgeLevel?: number
+    itemsSorted?: number
+    challengesCompleted?: number
+    currentStreak?: number
+    lastSortEventDate?: Date | string | null
     lastLogin?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
+    onboarded?: boolean
     badges?: UserBadgeCreateNestedManyWithoutUserInput
     sortEvents?: SortEventCreateNestedManyWithoutUserInput
   }
@@ -10320,11 +10632,19 @@ export namespace Prisma {
   export type UserUncheckedCreateWithoutChallengesInput = {
     id?: string
     walletAddress: string
+    name?: string | null
+    email?: string | null
+    profileImage?: string | null
     totalPoints?: number
     badgeLevel?: number
+    itemsSorted?: number
+    challengesCompleted?: number
+    currentStreak?: number
+    lastSortEventDate?: Date | string | null
     lastLogin?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
+    onboarded?: boolean
     badges?: UserBadgeUncheckedCreateNestedManyWithoutUserInput
     sortEvents?: SortEventUncheckedCreateNestedManyWithoutUserInput
   }
@@ -10375,11 +10695,19 @@ export namespace Prisma {
   export type UserUpdateWithoutChallengesInput = {
     id?: StringFieldUpdateOperationsInput | string
     walletAddress?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     totalPoints?: IntFieldUpdateOperationsInput | number
     badgeLevel?: IntFieldUpdateOperationsInput | number
+    itemsSorted?: IntFieldUpdateOperationsInput | number
+    challengesCompleted?: IntFieldUpdateOperationsInput | number
+    currentStreak?: IntFieldUpdateOperationsInput | number
+    lastSortEventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastLogin?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboarded?: BoolFieldUpdateOperationsInput | boolean
     badges?: UserBadgeUpdateManyWithoutUserNestedInput
     sortEvents?: SortEventUpdateManyWithoutUserNestedInput
   }
@@ -10387,11 +10715,19 @@ export namespace Prisma {
   export type UserUncheckedUpdateWithoutChallengesInput = {
     id?: StringFieldUpdateOperationsInput | string
     walletAddress?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     totalPoints?: IntFieldUpdateOperationsInput | number
     badgeLevel?: IntFieldUpdateOperationsInput | number
+    itemsSorted?: IntFieldUpdateOperationsInput | number
+    challengesCompleted?: IntFieldUpdateOperationsInput | number
+    currentStreak?: IntFieldUpdateOperationsInput | number
+    lastSortEventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastLogin?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboarded?: BoolFieldUpdateOperationsInput | boolean
     badges?: UserBadgeUncheckedUpdateManyWithoutUserNestedInput
     sortEvents?: SortEventUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -10474,11 +10810,19 @@ export namespace Prisma {
   export type UserCreateWithoutBadgesInput = {
     id?: string
     walletAddress: string
+    name?: string | null
+    email?: string | null
+    profileImage?: string | null
     totalPoints?: number
     badgeLevel?: number
+    itemsSorted?: number
+    challengesCompleted?: number
+    currentStreak?: number
+    lastSortEventDate?: Date | string | null
     lastLogin?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
+    onboarded?: boolean
     challenges?: UserChallengeCreateNestedManyWithoutUserInput
     sortEvents?: SortEventCreateNestedManyWithoutUserInput
   }
@@ -10486,11 +10830,19 @@ export namespace Prisma {
   export type UserUncheckedCreateWithoutBadgesInput = {
     id?: string
     walletAddress: string
+    name?: string | null
+    email?: string | null
+    profileImage?: string | null
     totalPoints?: number
     badgeLevel?: number
+    itemsSorted?: number
+    challengesCompleted?: number
+    currentStreak?: number
+    lastSortEventDate?: Date | string | null
     lastLogin?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
+    onboarded?: boolean
     challenges?: UserChallengeUncheckedCreateNestedManyWithoutUserInput
     sortEvents?: SortEventUncheckedCreateNestedManyWithoutUserInput
   }
@@ -10541,11 +10893,19 @@ export namespace Prisma {
   export type UserUpdateWithoutBadgesInput = {
     id?: StringFieldUpdateOperationsInput | string
     walletAddress?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     totalPoints?: IntFieldUpdateOperationsInput | number
     badgeLevel?: IntFieldUpdateOperationsInput | number
+    itemsSorted?: IntFieldUpdateOperationsInput | number
+    challengesCompleted?: IntFieldUpdateOperationsInput | number
+    currentStreak?: IntFieldUpdateOperationsInput | number
+    lastSortEventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastLogin?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboarded?: BoolFieldUpdateOperationsInput | boolean
     challenges?: UserChallengeUpdateManyWithoutUserNestedInput
     sortEvents?: SortEventUpdateManyWithoutUserNestedInput
   }
@@ -10553,11 +10913,19 @@ export namespace Prisma {
   export type UserUncheckedUpdateWithoutBadgesInput = {
     id?: StringFieldUpdateOperationsInput | string
     walletAddress?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     totalPoints?: IntFieldUpdateOperationsInput | number
     badgeLevel?: IntFieldUpdateOperationsInput | number
+    itemsSorted?: IntFieldUpdateOperationsInput | number
+    challengesCompleted?: IntFieldUpdateOperationsInput | number
+    currentStreak?: IntFieldUpdateOperationsInput | number
+    lastSortEventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastLogin?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboarded?: BoolFieldUpdateOperationsInput | boolean
     challenges?: UserChallengeUncheckedUpdateManyWithoutUserNestedInput
     sortEvents?: SortEventUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -10598,11 +10966,19 @@ export namespace Prisma {
   export type UserCreateWithoutSortEventsInput = {
     id?: string
     walletAddress: string
+    name?: string | null
+    email?: string | null
+    profileImage?: string | null
     totalPoints?: number
     badgeLevel?: number
+    itemsSorted?: number
+    challengesCompleted?: number
+    currentStreak?: number
+    lastSortEventDate?: Date | string | null
     lastLogin?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
+    onboarded?: boolean
     challenges?: UserChallengeCreateNestedManyWithoutUserInput
     badges?: UserBadgeCreateNestedManyWithoutUserInput
   }
@@ -10610,11 +10986,19 @@ export namespace Prisma {
   export type UserUncheckedCreateWithoutSortEventsInput = {
     id?: string
     walletAddress: string
+    name?: string | null
+    email?: string | null
+    profileImage?: string | null
     totalPoints?: number
     badgeLevel?: number
+    itemsSorted?: number
+    challengesCompleted?: number
+    currentStreak?: number
+    lastSortEventDate?: Date | string | null
     lastLogin?: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
+    onboarded?: boolean
     challenges?: UserChallengeUncheckedCreateNestedManyWithoutUserInput
     badges?: UserBadgeUncheckedCreateNestedManyWithoutUserInput
   }
@@ -10638,11 +11022,19 @@ export namespace Prisma {
   export type UserUpdateWithoutSortEventsInput = {
     id?: StringFieldUpdateOperationsInput | string
     walletAddress?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     totalPoints?: IntFieldUpdateOperationsInput | number
     badgeLevel?: IntFieldUpdateOperationsInput | number
+    itemsSorted?: IntFieldUpdateOperationsInput | number
+    challengesCompleted?: IntFieldUpdateOperationsInput | number
+    currentStreak?: IntFieldUpdateOperationsInput | number
+    lastSortEventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastLogin?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboarded?: BoolFieldUpdateOperationsInput | boolean
     challenges?: UserChallengeUpdateManyWithoutUserNestedInput
     badges?: UserBadgeUpdateManyWithoutUserNestedInput
   }
@@ -10650,11 +11042,19 @@ export namespace Prisma {
   export type UserUncheckedUpdateWithoutSortEventsInput = {
     id?: StringFieldUpdateOperationsInput | string
     walletAddress?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     totalPoints?: IntFieldUpdateOperationsInput | number
     badgeLevel?: IntFieldUpdateOperationsInput | number
+    itemsSorted?: IntFieldUpdateOperationsInput | number
+    challengesCompleted?: IntFieldUpdateOperationsInput | number
+    currentStreak?: IntFieldUpdateOperationsInput | number
+    lastSortEventDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     lastLogin?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    onboarded?: BoolFieldUpdateOperationsInput | boolean
     challenges?: UserChallengeUncheckedUpdateManyWithoutUserNestedInput
     badges?: UserBadgeUncheckedUpdateManyWithoutUserNestedInput
   }

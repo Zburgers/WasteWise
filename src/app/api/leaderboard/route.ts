@@ -1,4 +1,31 @@
-// filepath: /home/naki/WasteWise/src/app/api/leaderboard/route.ts
+/**
+ * Leaderboard API Route
+ * 
+ * This API is currently disabled as we're using dummy data for the MVP.
+ * 
+ * Future Implementation Notes:
+ * 1. Database Integration:
+ *    - Uses Prisma ORM with PostgreSQL
+ *    - Tables: User, SortEvent, Badge, UserBadge
+ * 
+ * 2. Features to implement:
+ *    - Real-time leaderboard updates
+ *    - Time-based filtering (weekly/monthly/all-time)
+ *    - Pagination with customizable limits
+ *    - User rank calculation
+ *    - Badge display integration
+ * 
+ * 3. Performance Considerations:
+ *    - Implement caching for frequent requests
+ *    - Add rate limiting
+ *    - Optimize database queries for large datasets
+ * 
+ * 4. Security:
+ *    - Add proper authentication checks
+ *    - Implement request validation
+ *    - Add rate limiting per user
+ */
+
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { errorResponse, getWalletAddress } from '@/lib/api-utils';
@@ -20,17 +47,53 @@ interface LeaderboardUser {
 }
 
 export async function GET(request: NextRequest) {
+  // Return dummy data for MVP
+  return NextResponse.json({
+    success: true,
+    data: {
+      users: [
+        {
+          id: '1',
+          walletAddress: '0x1234...5678',
+          totalPoints: 1500,
+          badgeLevel: 3,
+          badges: [
+            { name: 'Eco Warrior', imageUrl: '/badges/eco-warrior.png' }
+          ]
+        },
+        {
+          id: '2',
+          walletAddress: '0x8765...4321',
+          totalPoints: 1200,
+          badgeLevel: 2,
+          badges: [
+            { name: 'Eco Rookie', imageUrl: '/badges/eco-rookie.png' }
+          ]
+        }
+      ],
+      pagination: {
+        page: 1,
+        limit: 10,
+        total: 2,
+        pages: 1
+      },
+      userRank: 1
+    }
+  });
+
+  /* Original implementation commented out for future reference
   try {
     console.log('Leaderboard API called', new Date().toISOString());
     const walletAddress = getWalletAddress(request.headers);
-    console.log('Wallet address from headers:', walletAddress);
+    console.log('Wallet address from headers:', walletAddress || 'Not authenticated');
     const page = Number(request.nextUrl.searchParams.get('page')) || 1;
-    const limit = Number(request.nextUrl.searchParams.get('limit')) || 10;
+    const limit = Math.min(Number(request.nextUrl.searchParams.get('limit')) || 10, 50); // Cap at 50 for performance
+    const timeFilter = request.nextUrl.searchParams.get('timeFilter') || 'all';
     const skip = (page - 1) * limit;
 
-    console.log('Fetching users with params:', { page, limit, skip });
+    console.log('Fetching users with params:', { page, limit, skip, timeFilter });
 
-    // Get top users
+    // Get top users based on time filter
     const users = await prisma.user.findMany({
       select: {
         id: true,
@@ -47,9 +110,21 @@ export async function GET(request: NextRequest) {
             },
           },
         },
+        sortEvents: timeFilter !== 'all' ? {
+          where: {
+            createdAt: {
+              gte: timeFilter === 'weekly' 
+                ? new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
+                : new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
+            }
+          },
+          select: {
+            pointsEarned: true
+          }
+        } : undefined
       },
       orderBy: {
-        totalPoints: 'desc',
+        totalPoints: 'desc'
       },
       skip,
       take: limit,
@@ -58,7 +133,25 @@ export async function GET(request: NextRequest) {
       throw new Error('Database error while fetching users');
     });
 
-    console.log(`Found ${users.length} users`);
+    // Calculate points based on time filter
+    const usersWithFilteredPoints = users.map((user: LeaderboardUser & { sortEvents?: Array<{ pointsEarned: number }> }) => {
+      if (timeFilter === 'all') {
+        return user;
+      }
+      
+      const filteredPoints = user.sortEvents?.reduce((sum: number, event: { pointsEarned: number }) => sum + event.pointsEarned, 0) || 0;
+      return {
+        ...user,
+        totalPoints: filteredPoints
+      };
+    });
+
+    // Sort users by filtered points if needed
+    const sortedUsers = timeFilter === 'all' 
+      ? usersWithFilteredPoints 
+      : usersWithFilteredPoints.sort((a: { totalPoints: number }, b: { totalPoints: number }) => b.totalPoints - a.totalPoints);
+
+    console.log(`Found ${sortedUsers.length} users`);
 
     // Get total count for pagination
     const total = await prisma.user.count().catch((error: Error) => {
@@ -93,7 +186,7 @@ export async function GET(request: NextRequest) {
     }
 
     const response = {
-      users: users.map((user: LeaderboardUser) => ({
+      users: sortedUsers.map((user: LeaderboardUser) => ({
         ...user,
         walletAddress: `${user.walletAddress.slice(0, 6)}...${user.walletAddress.slice(-4)}`,
         badges: user.badges.map((b: { badge: { name: string; imageUrl: string } }) => b.badge),
@@ -108,7 +201,6 @@ export async function GET(request: NextRequest) {
     };
 
     console.log('Sending response:', response);
-    // Use NextResponse directly instead of helper function
     return NextResponse.json({
       success: true,
       data: response
@@ -120,4 +212,5 @@ export async function GET(request: NextRequest) {
       500
     );
   }
+  */
 }

@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "../src/generated/prisma"
@@ -15,34 +9,38 @@ datasource db {
 }
 
 model User {
-  id            String         @id @default(uuid())
-  walletAddress String         @unique
-  totalPoints   Int           @default(0)
-  badgeLevel    Int           @default(1)
-  lastLogin     DateTime      @default(now())
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
-
-  // Relations
-  challenges    UserChallenge[]
-  badges        UserBadge[]
-  sortEvents    SortEvent[]
+  id                  String          @id @default(uuid())
+  walletAddress       String          @unique
+  totalPoints         Int             @default(0)
+  badgeLevel          Int             @default(1)
+  lastLogin           DateTime        @default(now())
+  createdAt           DateTime        @default(now())
+  updatedAt           DateTime        @updatedAt
+  challengesCompleted Int             @default(0)
+  currentStreak       Int             @default(0)
+  email               String?
+  itemsSorted         Int             @default(0)
+  lastSortEventDate   DateTime?
+  name                String?
+  onboarded           Boolean         @default(false)
+  profileImage        String?
+  sortEvents          SortEvent[]
+  badges              UserBadge[]
+  challenges          UserChallenge[]
 
   @@index([walletAddress])
   @@index([totalPoints])
 }
 
 model Challenge {
-  id           String         @id @default(uuid())
-  title        String
-  description  String
-  goal         Int
-  rewardPoints Int
-  isActive     Boolean       @default(true)
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
-
-  // Relations
+  id             String          @id @default(uuid())
+  title          String
+  description    String
+  goal           Int
+  rewardPoints   Int
+  isActive       Boolean         @default(true)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
   userChallenges UserChallenge[]
 
   @@index([isActive])
@@ -56,10 +54,8 @@ model UserChallenge {
   isCompleted Boolean   @default(false)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
-
-  // Relations
-  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  challenge Challenge @relation(fields: [challengeId], references: [id], onDelete: Cascade)
+  challenge   Challenge @relation(fields: [challengeId], references: [id], onDelete: Cascade)
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, challengeId])
   @@index([userId])
@@ -67,17 +63,15 @@ model UserChallenge {
 }
 
 model Badge {
-  id             String     @id @default(uuid())
+  id             String      @id @default(uuid())
   name           String
   description    String
   requiredPoints Int
   nftTokenId     String?
   imageUrl       String
-  createdAt      DateTime   @default(now())
-  updatedAt      DateTime   @updatedAt
-
-  // Relations
-  userBadges UserBadge[]
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+  userBadges     UserBadge[]
 
   @@index([requiredPoints])
 }
@@ -89,10 +83,8 @@ model UserBadge {
   minted    Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  // Relations
-  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
-  badge Badge @relation(fields: [badgeId], references: [id], onDelete: Cascade)
+  badge     Badge    @relation(fields: [badgeId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, badgeId])
   @@index([userId])
@@ -100,14 +92,12 @@ model UserBadge {
 }
 
 model SortEvent {
-  id            String   @id @default(uuid())
-  userId        String
-  itemType      String
-  pointsEarned  Int
-  createdAt     DateTime @default(now())
-
-  // Relations
-  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id           String   @id @default(uuid())
+  userId       String
+  itemType     String
+  pointsEarned Int
+  createdAt    DateTime @default(now())
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@index([createdAt])

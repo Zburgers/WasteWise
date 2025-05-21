@@ -1,9 +1,10 @@
 import { NextRequest } from 'next/server';
-import { prisma } from '@/lib/prisma';
 import { successResponse, errorResponse, getWalletAddress } from '@/lib/api-utils';
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
+import { UserChallenge, Challenge } from '@/generated/prisma/client';
 
-const POINTS_PER_SORT = 5;
+// Force Node.js runtime for this API route
+export const runtime = 'nodejs';
 
 export async function POST(request: NextRequest) {
   try {
@@ -16,85 +17,168 @@ export async function POST(request: NextRequest) {
     const { itemType } = body;
 
     if (!itemType) {
-      return errorResponse('Item type is required');
+      return errorResponse('Item type is required', 400);
     }
 
-    // Get or create user
+    // Find the user
     let user = await prisma.user.findUnique({
       where: { walletAddress },
+      include: {
+        challenges: {
+          where: {
+            isCompleted: false,
+          },
+          include: {
+            challenge: true,
+          },
+        },
+      },
+      select: {
+        id: true,
+        walletAddress: true,
+        totalPoints: true,
+        badgeLevel: true,
+        itemsSorted: true,
+        challengesCompleted: true,
+        currentStreak: true,
+        lastSortEventDate: true,
+        challenges: {
+          where: {
+            isCompleted: false,
+          },
+          include: {
+            challenge: true,
+          },
+        },
+      }
     });
 
     if (!user) {
-      user = await prisma.user.create({
-        data: { walletAddress },
-      });
+      return errorResponse('User not found', 404);
     }
 
-    // Create sort event and update user points in a transaction
-    const result = await prisma.$transaction(async (tx: PrismaClient) => {
-      // Create sort event
-      const sortEvent = await tx.sortEvent.create({
-        data: {
-          userId: user!.id,
-          itemType,
-          pointsEarned: POINTS_PER_SORT,
-        },
-      });
+    // Determine points earned (example: 5 points per sort)
+    const pointsEarned = 5;
 
-      // Update user points
-      const updatedUser = await tx.user.update({
-        where: { id: user!.id },
-        data: {
-          totalPoints: { increment: POINTS_PER_SORT },
-          lastLogin: new Date(),
-        },
-        include: {
-          challenges: {
-            include: {
-              challenge: true,
-            },
+    // Calculate streak
+    const now = new Date();
+    let newStreak = user.currentStreak;
+
+    if (user.lastSortEventDate) {
+      const lastSortDate = new Date(user.lastSortEventDate);
+      const diffTime = Math.abs(now.getTime() - lastSortDate.getTime());
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+      if (diffDays === 1) {
+        // Sorted on consecutive days
+        newStreak += 1;
+      } else if (diffDays > 1) {
+        // Streak broken
+        newStreak = 1;
+      }
+      // If diffDays is 0 (sorted multiple times today), streak doesn't change.
+    } else {
+      // First sort ever
+      newStreak = 1;
+    }
+
+    // Update user's total points, items sorted, and streak info
+    user = await prisma.user.update({
+      where: { walletAddress: user.walletAddress },
+      data: {
+        totalPoints: user.totalPoints + pointsEarned,
+        itemsSorted: user.itemsSorted + 1,
+        currentStreak: newStreak,
+        lastSortEventDate: now,
+      },
+      include: { // Include challenges again to return updated progress
+        challenges: {
+          where: {
+            isCompleted: false,
+          },
+          include: {
+            challenge: true,
           },
         },
-      });
+      },
+    });
 
-      // Update active challenges
-      const activeChallenges = updatedUser.challenges.filter(
-        (uc) => !uc.isCompleted && uc.challenge.isActive
-      );
+    // Create a new sort event record
+    const sortEvent = await prisma.sortEvent.create({
+      data: {
+        userId: user.id,
+        itemType,
+        pointsEarned,
+      },
+    });
 
-      for (const userChallenge of activeChallenges) {
-        const newProgress = userChallenge.progress + 1;
-        const isCompleted = newProgress >= userChallenge.challenge.goal;
+    // Update user challenges based on the sort event
+    const updatedChallenges = await Promise.all(user.challenges.map(async (userChallenge: UserChallenge & { challenge: Challenge }) => {
+      // Assuming challenges are based on items sorted
+      const newProgress = userChallenge.progress + 1;
+      const isCompleted = newProgress >= userChallenge.challenge.goal;
 
-        await tx.userChallenge.update({
-          where: { id: userChallenge.id },
+      if (isCompleted && !userChallenge.isCompleted) {
+        // Mark challenge as completed and add reward points
+        user = await prisma.user.update({
+          where: { id: user.id },
           data: {
-            progress: newProgress,
-            isCompleted,
+            totalPoints: user.totalPoints + userChallenge.challenge.rewardPoints,
+            challengesCompleted: user.challengesCompleted + 1, // Increment completed challenges count
           },
         });
 
-        // If challenge completed, award points
-        if (isCompleted) {
-          await tx.user.update({
-            where: { id: user!.id },
-            data: {
-              totalPoints: {
-                increment: userChallenge.challenge.rewardPoints,
-              },
-            },
-          });
-        }
+        return prisma.userChallenge.update({
+          where: { id: userChallenge.id },
+          data: {
+            progress: newProgress,
+            isCompleted: true,
+          },
+          include: { challenge: true },
+        });
+      } else {
+        // Just update progress if not completed or already completed
+        return prisma.userChallenge.update({
+          where: { id: userChallenge.id },
+          data: {
+            progress: newProgress,
+          },
+          include: { challenge: true },
+        });
       }
+    }));
 
-      return {
-        sortEvent,
-        user: updatedUser,
-        challenges: activeChallenges,
-      };
+    // Recalculate badge level based on updated total points
+    const newBadgeLevel = Math.floor(user.totalPoints / 1000) + 1; // Assuming 1000 points per badge level
+    if (newBadgeLevel !== user.badgeLevel) {
+       await prisma.user.update({
+        where: { id: user.id },
+        data: { badgeLevel: newBadgeLevel },
+      });
+      user.badgeLevel = newBadgeLevel; // Update user object for the response
+    }
+
+
+    return successResponse({
+      sortEvent,
+      user: {
+        id: user.id,
+        walletAddress: user.walletAddress,
+        totalPoints: user.totalPoints,
+        badgeLevel: user.badgeLevel,
+        itemsSorted: user.itemsSorted,
+        challengesCompleted: user.challengesCompleted,
+      },
+      challenges: updatedChallenges.map(uc => ({
+        id: uc.id,
+        progress: uc.progress,
+        isCompleted: uc.isCompleted,
+        challenge: { // Include challenge details
+          title: uc.challenge.title,
+          rewardPoints: uc.challenge.rewardPoints,
+        }
+      })),
     });
-
-    return successResponse(result);
   } catch (error) {
     console.error('Sort event error:', error);
     return errorResponse('Failed to process sort event', 500);

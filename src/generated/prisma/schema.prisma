@@ -15,13 +15,21 @@ datasource db {
 }
 
 model User {
-  id            String   @id @default(uuid())
-  walletAddress String   @unique
-  totalPoints   Int      @default(0)
-  badgeLevel    Int      @default(1)
-  lastLogin     DateTime @default(now())
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  id                  String    @id @default(uuid())
+  walletAddress       String    @unique
+  name                String?
+  email               String?
+  profileImage        String?
+  totalPoints         Int       @default(0)
+  badgeLevel          Int       @default(1)
+  itemsSorted         Int       @default(0)
+  challengesCompleted Int       @default(0)
+  currentStreak       Int       @default(0)
+  lastSortEventDate   DateTime?
+  lastLogin           DateTime  @default(now())
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+  onboarded           Boolean   @default(false)
 
   // Relations
   challenges UserChallenge[]

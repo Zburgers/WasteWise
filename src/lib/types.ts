@@ -1,4 +1,3 @@
-
 export interface ClassificationOutput {
   wasteType: string;
   confidence: number;
@@ -43,4 +42,25 @@ export interface UserChallenge extends Challenge {
   currentProgress: number;
   startDate?: Date;
   completedDate?: Date;
+}
+
+// New types for Badges feature
+export interface Badge {
+  id: string;
+  name: string;
+  description: string;
+  imageUrl: string;
+  requiredPoints: number;
+  category?: string;
+  level?: string; // e.g., 'beginner', 'intermediate', 'advanced'
+  icon?: React.ElementType; // Optional Lucide icon component
+}
+
+export interface UserBadge extends Badge {
+  userId: string;
+  unlocked: boolean;
+  dateUnlocked?: Date;
+  nftMinted: boolean;
+  nftId?: string;
+  nftMintDate?: Date;
 }
