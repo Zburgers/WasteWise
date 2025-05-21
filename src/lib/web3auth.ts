@@ -62,8 +62,16 @@ export const getWeb3AuthInstance = async (): Promise<Web3Auth> => {
       uxMode: "popup",
       // Simplified login config - only keep the most essential providers
       loginConfig: {
-        google: { verifier: "google", typeOfLogin: "google", clientId: "" },
-        apple:  { verifier: "apple",  typeOfLogin: "apple",  clientId: "" },
+        google: { 
+          verifier: "google", 
+          typeOfLogin: "google", 
+          clientId: GOOGLE_CLIENT_ID || "" 
+        },
+        apple: { 
+          verifier: "apple", 
+          typeOfLogin: "apple", 
+          clientId: APPLE_CLIENT_ID || "" 
+        },
       },
       whiteLabel: {
         appName: "WasteWise",
