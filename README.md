@@ -337,7 +337,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👨‍💻 About the Creator
 
 <div align="center">
-  <img src="https://via.placeholder.com/150?text=Nakshatra" width="150px" style="border-radius:50%;" />
+  <img src="https://avatars.githubusercontent.com/u/95270855?v=4" width="150px" style="border-radius:50%;" />
   <h3>Nakshatra Kundlas (Zburgers)</h3>
   <p>WasteWise was developed by Nakshatra Kundlas for the <strong>Apex Hacks II Hackathon</strong>. The project aims to leverage technology to promote sustainable waste management practices and environmental consciousness.</p>
   
