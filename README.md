@@ -372,7 +372,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 <div align="center">
-  <img src="https://via.placeholder.com/800x100?text=Reduce+Reuse+Recycle" width="80%" />
+  <img src="public/static/WasteWiseLogo2.png" width="80%" />
   <p>Made with ❤️ for a cleaner planet by <a href="https://github.com/Zburgers/">Nakshatra (Zburgers)</a></p>
   
   <a href="https://github.com/Zburgers/WasteWise/stargazers">⭐ Star this project ⭐</a>
