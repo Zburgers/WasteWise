@@ -75,48 +75,48 @@ It turns sustainability into a social, gamified, and educational experience — 
   <table>
     <tr>
       <td>
-        <img src="https://via.placeholder.com/50?text=🧠" width="40px" />
+        <img src="public/static/aiclassification.png" width="40px" />
         <h4>AI Waste Classifier</h4>
         <p>Upload a photo, get instant classification + region-specific disposal tips</p>
       </td>
       <td>
-        <img src="https://via.placeholder.com/50?text=🗨️" width="40px" />
+        <img src="public/static/chatbot.png" width="40px" />
         <h4>Chat with WasteWizard</h4>
         <p>AI chatbot answers recycling queries with local awareness</p>
       </td>
     </tr>
     <tr>
       <td>
-        <img src="https://via.placeholder.com/50?text=🏆" width="40px" />
+        <img src="public/static/earnpoints.png" width="40px" />
         <h4>Community Challenges</h4>
         <p>Missions + social sharing for bonus points</p>
       </td>
       <td>
-        <img src="https://via.placeholder.com/50?text=📈" width="40px" />
+        <img src="public/static/competeglobally.png" width="40px" />
         <h4>Global Leaderboards</h4>
         <p>Compete weekly, monthly, and all-time</p>
       </td>
     </tr>
     <tr>
       <td>
-        <img src="https://via.placeholder.com/50?text=🧬" width="40px" />
+        <img src="public/static/levelandbadges.png" width="40px" />
         <h4>Levels + Badges</h4>
         <p>XP-driven levels + achievement-based badge system</p>
       </td>
       <td>
-        <img src="https://via.placeholder.com/50?text=🪙" width="40px" />
+        <img src="public/static/smart-contract.png" width="40px" />
         <h4>Mintable NFT Badges</h4>
         <p>On-chain proof of eco-effort</p>
       </td>
     </tr>
     <tr>
       <td>
-        <img src="https://via.placeholder.com/50?text=🔐" width="40px" />
+        <img src="public/static/web3.png" width="40px" />
         <h4>Web3 Auth</h4>
         <p>Sign in with MetaMask, Google, or Apple (WIP)</p>
       </td>
       <td>
-        <img src="https://via.placeholder.com/50?text=🌍" width="40px" />
+        <img src="public/static/sustainability.png" width="40px" />
         <h4>Sustainability First</h4>
         <p>Learn while taking action</p>
       </td>
