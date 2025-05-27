@@ -58,13 +58,13 @@ It turns sustainability into a social, gamified, and educational experience — 
 <div align="center">
   <table>
     <tr>
-      <td align="center"><img src="https://via.placeholder.com/80?text=📱" width="60px" /><br />Upload Photo</td>
+      <td align="center"><img src="public/static/uploadicon.png" width="60px" /><br />Upload Photo</td>
       <td align="center">➡️</td>
-      <td align="center"><img src="https://via.placeholder.com/80?text=🧠" width="60px" /><br />AI Classification</td>
+      <td align="center"><img src="public/static/aiclassification.png" width="60px" /><br />AI Classification</td>
       <td align="center">➡️</td>
-      <td align="center"><img src="https://via.placeholder.com/80?text=🏆" width="60px" /><br />Earn Points</td>
+      <td align="center"><img src="public/static/earnpoints.png" width="60px" /><br />Earn Points</td>
       <td align="center">➡️</td>
-      <td align="center"><img src="https://via.placeholder.com/80?text=🌍" width="60px" /><br />Compete Globally</td>
+      <td align="center"><img src="public/static/competeglobally.png" width="60px" /><br />Compete Globally</td>
     </tr>
   </table>
 </div>
